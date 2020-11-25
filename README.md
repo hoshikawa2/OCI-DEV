@@ -1032,26 +1032,26 @@ Opcionalmente, você pode liberar recursos do Oracle Cloud Infrastructure exclui
 ----
 
 
-### T3.E. Limpeza do cluster OKE e VCN (opcional)
+### T6 - Limpeza do cluster OKE e VCN (opcional)
 
 Depois de concluir o tutorial, se você deseja liberar recursos do Oracle Cloud Infrastructure, agora pode excluir o VCN e o cluster que criou. Por outro lado, é uma boa ideia mantê-los (especialmente o VCN) para seus próprios fins de teste. Se você pretende seguir o tutorial Extração de uma imagem do Oracle Cloud Infrastructure Registry ao implantar um aplicativo com carga balanceada em um cluster , definitivamente não exclua o VCN e o cluster, porque você os usará nesse tutorial.
 
-**T3.E1.** (opcional) Volte para a janela do navegador com a página Detalhes do Cluster mostrando o Cluster do Tutorial, clique em Excluir Cluster e confirme se deseja excluir o Cluster do Tutorial criado.
+**T6.1** (opcional) Volte para a janela do navegador com a página Detalhes do Cluster mostrando o Cluster do Tutorial, clique em Excluir Cluster e confirme se deseja excluir o Cluster do Tutorial criado.
 
 ![Página de detalhes do cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-delete-cluster.png)
 Descrição da ilustração
 
-**T3.E2.** (opcional) Exclua o VCN criado durante o tutorial:
+**T6.2** (opcional) Exclua o VCN criado durante o tutorial:
 
-**T3.E2.1** No console, abra o menu de navegação. Em Infraestrutura central , vá para Rede e clique em Redes em nuvem virtual .
+**T6.2.1** No console, abra o menu de navegação. Em Infraestrutura central , vá para Rede e clique em Redes em nuvem virtual .
 
-**T3.E2.2** Localize o VCN que você criou durante este tutorial.
+**T6.2.2** Localize o VCN que você criou durante este tutorial.
 
-**T3.E2.3** Clique no ícone Ações ao lado do VCN e clique em Terminar .
+**T6.2.3** Clique no ícone Ações ao lado do VCN e clique em Terminar .
 
 ![Página VCN](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-vcn-terminate.png)
 
-**T3.E2.4** Confirme que deseja encerrar o VCN.
+**T6.2.4** Confirme que deseja encerrar o VCN.
 
 ----
 
