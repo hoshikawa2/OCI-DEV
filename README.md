@@ -150,21 +150,32 @@ Vamos lá
 **T2.6.2.1.2** Se você for um administrador fazendo isso para outro usuário: Abra o menu de navegação . Em Governança e Administração , acesse Identidade e clique em Usuários . Selecione o usuário na lista.
 
 **T2.6.2.1.3** O OCID do usuário é mostrado em Informações do usuário . 
+
 **T2.6.2.1.4** Clique em Copiar para copiá-lo para a área de transferência e guarde em suas anotações para uso posterior
 
 
 **T2.6.3 - Como fazer upload da chave pública**
 
-Você pode fazer upload da chave pública PEM no console , que pode ser acessado fazendo login aqui: https://cloud.oracle.com . Se você não tiver um login e senha para o console , entre em contato com um administrador.
+Você pode fazer upload da chave pública PEM no console , que pode ser acessado fazendo login aqui: https://cloud.oracle.com
 
-Abra o Console , e login.
-Visualize os detalhes do usuário que chamará a API com o par de chaves:
-Se você estiver conectado como o usuário:
-Abra o menu Perfil ( ) e clique em Configurações do usuário . Ícone do menu do usuário
-Se você for um administrador fazendo isso para outro usuário: Abra o menu de navegação . Em Governança e Administração , acesse Identidade e clique em Usuários . Selecione o usuário na lista.
-Clique em Adicionar chave pública .
-Cole o conteúdo da chave pública PEM na caixa de diálogo e clique em Adicionar .
-A impressão digital da chave é exibida (por exemplo, 12: 34: 56: 78: 90: ab: cd: ef: 12: 34: 56: 78: 90: ab: cd: ef).
+**T2.6.3.1** Abra o Console , e login.
+
+**T2.6.3.2** Visualize os detalhes do usuário que chamará a API com o par de chaves:
+
+**T2.6.3.2.1** Se você estiver conectado como o usuário:
+
+- Abra o menu Perfil (Menú Hambúrger) e clique em Configurações do usuário .
+
+**T2.6.3.2.2** Se você for um administrador fazendo isso para outro usuário: 
+- Abra o menu de navegação . 
+- Em Governança e Administração , acesse Identidade e clique em Usuários . 
+- Selecione o usuário na lista.
+
+**T2.6.3.2.3** Clique em Adicionar chave pública .
+
+**T2.6.3.2.4** Cole o conteúdo da chave pública PEM na caixa de diálogo e clique em Adicionar .
+
+    A impressão digital da chave é exibida (por exemplo, 12: 34: 56: 78: 90: ab: cd: ef: 12: 34: 56: 78: 90: ab: cd: ef).
 
 **T2.6.4 Configurando OCI CLI**
 
@@ -183,12 +194,46 @@ Você vai precisar de algumas informações para preencher a configuração quan
 - OCID do seu Usuário na Cloud Oracle
 
 
+**T2.6.5 - Testando o OCI CLI**
 
+Para testar suas configurações, execute o seguinte comando:
+
+    $ oci iam user list
+
+Você deve obter algo como:
+
+	{
+	  "data": [
+	    {
+	      "capabilities": {
+	        "can-use-api-keys": true,
+	        "can-use-auth-tokens": true,
+	        "can-use-console-password": true,
+	        "can-use-customer-secret-keys": true,
+	        "can-use-o-auth2-client-credentials": true,
+	        "can-use-smtp-credentials": true
+	      },
+	      "compartment-id": "ocid1.tenancy.oc1..aaaaaaaarmfxxxxxxxxxxxxyazqycjapqsyaxxxxxxxxxxxxxxbyb6j6q",
+	      "defined-tags": {},
+	      "description": "Cristiano Hoshikawa",
+	      "email": "teste@teste.com",
+	      "email-verified": true,
+	      "external-identifier": null,
+	      "freeform-tags": {},
+	      "id": "ocid1.user.oc1..aaaaaaxccccccccccccdpmntisfgxeizqwwwwwewwweeeesol4f3keeeeeexmlcmphda",
+	      "identity-provider-id": null,
+	      "inactive-status": null,
+	      "is-mfa-activated": false,
+	      "lifecycle-state": "ACTIVE",
+	      "name": "teste@teste.com",
+	      "time-created": "2020-04-17T10:57:09.254000+00:00"
+	    }
+	}
 
 
 ----
 
-# T4 - Tutorial 4 - Criando a Instância do OKE
+# T3 - Tutorial 3 - Criando a Instância do OKE
 
 **Este tutorial de 10 minutos mostra como:**
 
@@ -221,99 +266,99 @@ Neste tutorial, você usa as configurações padrão para definir um novo cluste
 - Você deve ter instalado e configurado a ferramenta de linha de comando do Kubernetes kubectl. Se você ainda não fez isso, consulte a documentação do kubectl .
 
 
-### T4.A. Criando a Instância do OKE
+### T3.A. Criando a Instância do OKE
 
-**T4.A1.** Em um navegador, acesse o url que você recebeu para fazer login no Oracle Cloud Infrastructure.
+**T3.A1.** Em um navegador, acesse o url que você recebeu para fazer login no Oracle Cloud Infrastructure.
 
 Página de login
 ![Descrição da ilustração](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-login-page.png)
 
-**T4.A2.** Especifique um username no qual você tenha as permissões apropriadas para criar clusters. Você herda essas permissões de uma das seguintes maneiras:
+**T3.A2.** Especifique um username no qual você tenha as permissões apropriadas para criar clusters. Você herda essas permissões de uma das seguintes maneiras:
  - Por pertencer ao grupo Administradores da locação.
  - Por pertencer a outro grupo ao qual uma política concede as permissões apropriadas do Container Engine para Kubernetes. Como você criará e configurará um cluster e recursos de rede associados durante o tutorial, as políticas também devem conceder ao grupo as permissões listadas em O que você precisa? seção.
 
-**T4.A3.** Digite seu nome de usuário e senha.
+**T3.A3.** Digite seu nome de usuário e senha.
 
 ---
 
-### T4.B. Definir os detalhes do cluster
+### T3.B. Definir os detalhes do cluster
 
-**T4.B1.** No console, abra o menu de navegação. Em Soluções e plataforma , acesse Serviços para desenvolvedores e clique em Clusters Kubernetes.
+**T3.B1.** No console, abra o menu de navegação. Em Soluções e plataforma , acesse Serviços para desenvolvedores e clique em Clusters Kubernetes.
 
-**T4.B2.** Escolha um compartimento no qual você tenha permissão para trabalhar e no qual deseja criar o novo cluster e os recursos de rede associados.
+**T3.B2.** Escolha um compartimento no qual você tenha permissão para trabalhar e no qual deseja criar o novo cluster e os recursos de rede associados.
 
 ![Página de clusters](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-console-create-cluster.png)
 
-**T4.B3.** Na página Clusters , clique em Criar Cluster .
+**T3.B3.** Na página Clusters , clique em Criar Cluster .
 
-**T4.B4.** Na caixa de diálogo Criar Cluster , clique em Criação Rápida e em Iniciar Fluxo de Trabalho.
+**T3.B4.** Na caixa de diálogo Criar Cluster , clique em Criação Rápida e em Iniciar Fluxo de Trabalho.
 
 ![Caixa de diálogo Criar Solução de Cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-solution-v2.png)
 
-**T4.B5.** Na página Criar Cluster , altere o valor do marcador no campo Nome e digite Tutorial Cluster.
+**T3.B5.** Na página Criar Cluster , altere o valor do marcador no campo Nome e digite Tutorial Cluster.
 
 ![Criação de Cluster - página Criar Cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-complete-top-v2.png)
 
-**T4.B6.** Clique em Avançar para revisar os detalhes inseridos para o novo cluster.
+**T3.B6.** Clique em Avançar para revisar os detalhes inseridos para o novo cluster.
 ![Criação de cluster - página de revisão](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-review-top-v2.png)
 
-**T4.B7.** Na página Revisar , clique em Criar Cluster para criar os novos recursos de rede e o novo cluster.
+**T3.B7.** Na página Revisar , clique em Criar Cluster para criar os novos recursos de rede e o novo cluster.
 Você vê os diferentes recursos de rede sendo criados para você.
 
 ![Diálogo de status de criação de cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-creation-status-top-v1.png)
 
 
-**T4.B8.** Clique em Fechar para retornar ao console.
+**T3.B8.** Clique em Fechar para retornar ao console.
 ![Diálogo de status de criação de cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-creation-status-bottom-v2.png)
 
 
-**T4.B9.** O novo cluster é mostrado na página Detalhes do Cluster . Depois de criado, o novo cluster tem o status Ativo.
+**T3.B9.** O novo cluster é mostrado na página Detalhes do Cluster . Depois de criado, o novo cluster tem o status Ativo.
 ![Página de detalhes do cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-clusters-page-active.png)
 
 
-**T4.B10.** Em Recursos , selecione Pools de nós e clique no nome do pool de nós no cluster que você acabou de criar (pool1). Em Recursos , selecione Nós e role para baixo para ver os detalhes dos novos nós de trabalho (instâncias de computação) no pool de nós.
+**T3.B10.** Em Recursos , selecione Pools de nós e clique no nome do pool de nós no cluster que você acabou de criar (pool1). Em Recursos , selecione Nós e role para baixo para ver os detalhes dos novos nós de trabalho (instâncias de computação) no pool de nós.
 
 ![Recursos](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-clusters-page-nodepool.png)
 
 ----
 
-### T4.C. Configure o arquivo kubeconfig para o cluster
+### T3.C. Configure o arquivo kubeconfig para o cluster
 
-**T4.C1.** Confirme que você já fez o seguinte:
+**T3.C1.** Confirme que você já fez o seguinte:
  - Gerou um par de chaves de assinatura de API.
  - Adicionado o valor da chave pública do par de chaves de assinatura da API às Configurações do usuário para seu nome de usuário.
  - Instalado e configurado o Oracle Cloud Infrastructure CLI (versão 2.6.4 ou posterior).
 **** REVISAR
 Se você não fez uma ou mais das opções acima, ou não tem certeza, consulte o tópico Configurando o acesso ao cluster na documentação do Container Engine para Kubernetes.
 
-**T4.C2.** Com a página Node Pools mostrando detalhes de pool1, clique em Tutorial Cluster no caminho de navegação. Clique em Access Cluster para exibir a caixa de diálogo Access Your Cluster e, em seguida, clique em Local Access .
+**T3.C2.** Com a página Node Pools mostrando detalhes de pool1, clique em Tutorial Cluster no caminho de navegação. Clique em Access Cluster para exibir a caixa de diálogo Access Your Cluster e, em seguida, clique em Local Access .
 Como acessar a caixa de diálogo do Kubeconfig
 Descrição da ilustração
 
-**T4.C3.** Em uma janela de terminal, crie um diretório para conter o arquivo kubeconfig, fornecendo ao diretório o nome e a localização padrão esperados $HOME/.kube. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
+**T3.C3.** Em uma janela de terminal, crie um diretório para conter o arquivo kubeconfig, fornecendo ao diretório o nome e a localização padrão esperados $HOME/.kube. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
 
 
        $ mkdir -p $ HOME / .kube
 
-**T4.C4.** Execute o comando CLI do Oracle Cloud Infrastructure para configurar o arquivo kubeconfig e salve-o com o nome e localização padrão esperados $HOME/.kube/config. Esse nome e local garantem que o arquivo kubeconfig esteja acessível para kubectl e o painel do Kubernetes sempre que você executá-los em uma janela de terminal. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ):
+**T3.C4.** Execute o comando CLI do Oracle Cloud Infrastructure para configurar o arquivo kubeconfig e salve-o com o nome e localização padrão esperados $HOME/.kube/config. Esse nome e local garantem que o arquivo kubeconfig esteja acessível para kubectl e o painel do Kubernetes sempre que você executá-los em uma janela de terminal. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ):
 
     $ oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.phx.aaaaaaaaae ... --file $ HOME / .kube / config --region us-phoenix-1 --token-version 2.0.0
 
 onde ocid1.cluster.oc1.phx.aaaaaaaaae ... é o OCID do cluster atual. Por conveniência, o comando na caixa de diálogo Acessar seu cluster já inclui o OCID do cluster.
 
-**T4.C5.** Configure o valor da variável de ambiente KUBECONFIG para o nome e localização do arquivo kubeconfig. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
+**T3.C5.** Configure o valor da variável de ambiente KUBECONFIG para o nome e localização do arquivo kubeconfig. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
 
     $ export KUBECONFIG = $ HOME / .kube / config
 
-**T4.C6.** Clique em Fechar para fechar a caixa de diálogo Acessar seu cluster .
+**T3.C6.** Clique em Fechar para fechar a caixa de diálogo Acessar seu cluster .
 
 ----
 
-### T4.D. Verifique o acesso do painel de kubectl e Kubernetes ao cluster
+### T3.D. Verifique o acesso do painel de kubectl e Kubernetes ao cluster
 
-**T4.D1.** Confirme se você já instalou o kubectl. Se você ainda não fez isso, consulte a documentação do kubectl .
+**T3.D1.** Confirme se você já instalou o kubectl. Se você ainda não fez isso, consulte a documentação do kubectl .
 
-**T4.D2.** Verifique se você pode usar kubectl para se conectar ao novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
+**T3.D2.** Verifique se você pode usar kubectl para se conectar ao novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
 
     $ kubectl get nodes
 
@@ -324,13 +369,13 @@ Você vê detalhes dos nós em execução no cluster. Por exemplo:
     10.0.11.2 Nó pronto 1d v1.13.5
     10.0.12.2 Nó pronto 1d v1.13.5
 
-**T4.D3.** Implante o painel do Kubernetes no novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
+**T3.D3.** Implante o painel do Kubernetes no novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
 
     $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.3/aio/deploy/recommended.yaml
 
-**T4.D4.** Verifique se você pode usar o painel Kubernetes para se conectar ao cluster:
+**T3.D4.** Verifique se você pode usar o painel Kubernetes para se conectar ao cluster:
 
-**T4.D4.1** Em um editor de texto, crie um arquivo chamado oke-admin-service-account.yaml com o seguinte conteúdo:
+**T3.D4.1** Em um editor de texto, crie um arquivo chamado oke-admin-service-account.yaml com o seguinte conteúdo:
 
     apiVersion: v1
     kind: ServiceAccount
@@ -355,7 +400,7 @@ Você vê detalhes dos nós em execução no cluster. Por exemplo:
   	    
 O arquivo define uma conta de serviço de administrador e um clusterrolebinding, ambos chamados oke-admin.
 
-**T4.D4.2** Crie a conta de serviço e o clusterrolebinding no cluster inserindo:
+**T3.D4.2** Crie a conta de serviço e o clusterrolebinding no cluster inserindo:
 
     $ kubectl apply -f oke-admin-service-account.yaml
 
@@ -366,7 +411,7 @@ A saída do comando acima confirma a criação da conta de serviço e o clusterr
 
 Agora você pode usar a conta de serviço oke-admin para visualizar e controlar o cluster e se conectar ao painel do Kubernetes.
 
-**T4.D4.3** Obtenha um token de autenticação para a conta de serviço oke-admin inserindo:
+**T3.D4.3** Obtenha um token de autenticação para a conta de serviço oke-admin inserindo:
 
     $ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep oke-admin | awk '{print $1}')
 
@@ -386,14 +431,14 @@ A saída do comando acima inclui um token de autenticação (uma longa string al
 
 No exemplo acima, eyJh______px1Q(abreviado para legibilidade) é o token de autenticação.
 
-**T4.D4.4** Copie o valor do token:elemento da saída. Você usará esse token para se 
+**T3.D4.4** Copie o valor do token:elemento da saída. Você usará esse token para se 
 conectar ao painel.
 
-**T4.D4.5** Em uma janela de terminal, digite o seguinte comando:
+**T3.D4.5** Em uma janela de terminal, digite o seguinte comando:
 
     $ kubectl proxy
 
-**T4.D4.6** Abra uma nova janela do navegador e acesse 
+**T3.D4.6** Abra uma nova janela do navegador e acesse 
 
     http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
     
@@ -403,35 +448,207 @@ conectar ao painel.
 
 ![Página de login do painel do Kubernetes](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-k8s-dashboard-sign-in.png)
 
-**T4.D4.7** Selecione a opção Token e cole o valor do token:elemento que você copiou anteriormente no campo Token .
+**T3.D4.7** Selecione a opção Token e cole o valor do token:elemento que você copiou anteriormente no campo Token .
 
-**T4.D4.8** Clique em Entrar .
+**T3.D4.8** Clique em Entrar .
 
-**T4.D4.9** Clique em Visão geral para ver se o Kubernetes é o único serviço em execução no cluster.
+**T3.D4.9** Clique em Visão geral para ver se o Kubernetes é o único serviço em execução no cluster.
 
 ![Página de visão geral do painel do Kubernetes](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-k8s-dashboard-overview.png)
 
-**T4.D4.10** Parabéns! Você criou com êxito um novo cluster e confirmou que o novo cluster está instalado e funcionando conforme o esperado.
+**T3.D4.10** Parabéns! Você criou com êxito um novo cluster e confirmou que o novo cluster está instalado e funcionando conforme o esperado.
 
 ----
 
-### T4.E. Limpeza (opcional)
+### T3.E. Limpeza (opcional)
 
 Depois de concluir o tutorial, se você deseja liberar recursos do Oracle Cloud Infrastructure, agora pode excluir o VCN e o cluster que criou. Por outro lado, é uma boa ideia mantê-los (especialmente o VCN) para seus próprios fins de teste. Se você pretende seguir o tutorial Extração de uma imagem do Oracle Cloud Infrastructure Registry ao implantar um aplicativo com carga balanceada em um cluster , definitivamente não exclua o VCN e o cluster, porque você os usará nesse tutorial.
 
-**T4.E1.** (opcional) Volte para a janela do navegador com a página Detalhes do Cluster mostrando o Cluster do Tutorial, clique em Excluir Cluster e confirme se deseja excluir o Cluster do Tutorial criado.
+**T3.E1.** (opcional) Volte para a janela do navegador com a página Detalhes do Cluster mostrando o Cluster do Tutorial, clique em Excluir Cluster e confirme se deseja excluir o Cluster do Tutorial criado.
 
 ![Página de detalhes do cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-delete-cluster.png)
 Descrição da ilustração
 
-**T4.E2.** (opcional) Exclua o VCN criado durante o tutorial:
+**T3.E2.** (opcional) Exclua o VCN criado durante o tutorial:
 
-**T4.E2.1** No console, abra o menu de navegação. Em Infraestrutura central , vá para Rede e clique em Redes em nuvem virtual .
+**T3.E2.1** No console, abra o menu de navegação. Em Infraestrutura central , vá para Rede e clique em Redes em nuvem virtual .
 
-**T4.E2.2** Localize o VCN que você criou durante este tutorial.
+**T3.E2.2** Localize o VCN que você criou durante este tutorial.
 
-**T4.E2.3** Clique no ícone Ações ao lado do VCN e clique em Terminar .
+**T3.E2.3** Clique no ícone Ações ao lado do VCN e clique em Terminar .
 
 ![Página VCN](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-vcn-terminate.png)
 
-**T4.E2.4** Confirme que deseja encerrar o VCN.
+**T3.E2.4** Confirme que deseja encerrar o VCN.
+
+----
+
+# T4 - Tutorial 4 - Usando o OCIR (Oracle Cloud Infrastructure Registry)
+
+
+Este tutorial de 10 minutos mostra como:
+
+- criar um token de autenticação para usar com o Oracle Cloud Infrastructure Registry
+- faça login no Oracle Cloud Infrastructure Registry a partir do Docker CLI
+- extrair uma imagem de teste do DockerHub
+- colocando uma tag em uma imagem
+- envie a imagem para o Oracle Cloud Infrastructure Registry usando Docker CLI
+- verificar se a imagem foi enviada para o Oracle Cloud Infrastructure Registry usando o console
+fundo
+
+### T4.1 - Introdução
+
+O Oracle Cloud Infrastructure Registry é um registro gerenciado pela Oracle que permite simplificar o fluxo de trabalho de desenvolvimento para produção. O Oracle Cloud Infrastructure Registry torna mais fácil para você, como desenvolvedor, armazenar, compartilhar e gerenciar artefatos de desenvolvimento como imagens Docker. E a arquitetura altamente disponível e escalonável do Oracle Cloud Infrastructure garante que você possa implantar seus aplicativos de maneira confiável. Assim, você não precisa se preocupar com problemas operacionais ou com o dimensionamento da infraestrutura subjacente.
+
+Neste tutorial, você primeiro criará um token de autenticação para acessar o Oracle Cloud Infrastructure Registry. Em seguida, você obterá uma imagem de teste do DockerHub e dará a ela uma nova tag. A nova tag identifica a região, locação e repositório do Oracle Cloud Infrastructure Registry para o qual você deseja enviar a imagem.
+
+Depois de fornecer a tag à imagem, você a envia por push para o Oracle Cloud Infrastructure Registry usando o Docker CLI. Por fim, você verificará se a imagem foi enviada com sucesso, visualizando o repositório que foi criado.
+
+### T4.2 - O que você precisa?
+
+Um nome de usuário e senha do Oracle Cloud Infrastructure.
+Para enviar imagens para o Oracle Cloud Infrastructure Registry, você deve pertencer a um dos seguintes:
+- O grupo Administradores da locação.
+- Um grupo ao qual uma política concede as permissões apropriadas do Oracle Cloud Infrastructure Registry, incluindo a permissão REPOSITORY_CREATE (consulte o tópico Políticas para controlar o acesso ao repositório na documentação do Oracle Cloud Infrastructure Registry).
+- Acesso ao Docker CLI. Por exemplo, para enviar e receber imagens em uma máquina cliente local, conforme descrito neste tutorial, você precisará ter instalado o Docker na máquina local. (Como alternativa, você pode usar o Docker no ambiente do Cloud Shell.)
+
+### T4.3 - Iniciar Oracle Cloud Infrastructure
+
+**T4.3.1** Em um navegador, acesse o url que você recebeu para fazer login no Oracle Cloud Infrastructure.
+
+![Página de login]
+(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-login-page.png)
+
+**T4.3.2** Especifique o seu tenant na qual você tenha as permissões apropriadas para criar repositórios no Oracle Cloud Infrastructure Registry. Você herda essas permissões de uma das seguintes maneiras:
+
+- por pertencer ao grupo Administradores do locatário
+- por pertencer a outro grupo ao qual uma política concede as permissões apropriadas do Oracle Cloud Infrastructure Registry, incluindo a permissão REPOSITORY_CREATE
+
+Este tutorial assume que a locação é acme-dev.
+
+**T4.3.3** Digite seu nome de usuário e senha e clique em Entrar . 
+
+Este tutorial assume que o nome de usuário é jdoe@acme.com.
+
+### T4.4 - Obtenha um token de autenticação
+
+**T4.4.1** No canto superior direito do console, abra o menu Usuário ( Menu do usuário) e clique em Configurações do usuário .
+
+![Tela do console]
+(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-console-settings.png)
+
+**T4.4.2** Na página Tokens de autenticação , clique em Gerar token .
+
+![Caixa de diálogo de geração de token]
+(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-auth-tokens.png)
+
+**T4.4.3** Insira Tutorial auth tokenuma descrição amigável para o token de autenticação e clique em Gerar token . O novo token de autenticação é exibido.
+
+**T4.4.4** Copie o token de autenticação imediatamente para um local seguro de onde você possa recuperá-lo mais tarde, porque você não verá o token de autenticação novamente no console.
+
+**T4.4.5** Feche a caixa de diálogo Gerar token.
+
+Confirme se você pode acessar o Oracle Cloud Infrastructure Registry:
+- No console, abra o menu de navegação. Em Soluções e plataforma , acesse Serviços para desenvolvedores e clique em Container Registry .
+- Escolha a região em que você estará trabalhando (por exemplo, us-phoenix-1). 
+- Revise os repositórios que já existem. Este tutorial assume que nenhum repositório foi criado ainda.
+
+![Página de registro]
+(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-registry-no-images.png)
+
+### T4.5 - Faça login no Oracle Cloud Infrastructure Registry a partir do Docker CLI
+
+**T4.5.1** Em uma janela de terminal na máquina cliente que executa o Docker, faça login no Oracle Cloud Infrastructure Registry digitando:
+
+    docker login <region-key> .ocir.io
+    
+onde **<region-key>** está a chave para a região do Oracle Cloud Infrastructure Registry que você está usando. 
+
+    Por exemplo phx,. Consulte o tópico Disponibilidade por região na documentação do Oracle Cloud Infrastructure Registry.
+    DICA: As regiões são as siglas dos aeroportos. Por exemplo: GRU - Guarulhos-SP, IAD - Ashburn, etc
+
+**T4.5.2** Quando solicitado, digite seu nome de usuário no formato <tenancy-namespace>/<username>. 
+
+Por exemplo ansh81vru1zp/jdoe@acme.com,. Se a sua locação for federada com o Oracle Identity Cloud Service, use o formato <tenancy-namespace>/oracleidentitycloudservice/<username>.
+
+**T4.5.3** Quando solicitado, digite o token de autenticação que você copiou anteriormente como a senha.
+
+![Janela do terminal]
+(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-login.png)
+
+### T4.6 - Extraia a imagem hello-world do DockerHub
+
+Em uma janela de terminal na máquina cliente que executa o Docker, digite docker pull karthequian/helloworld:latestpara recuperar a versão mais recente da imagem hello-world do DockerHub.
+
+![Janela do terminal]
+(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-pull.png)
+
+As diferentes camadas da imagem do helloworld são puxadas separadamente.
+seção 5Marque a imagem para empurrar
+
+Em uma janela de terminal na máquina cliente que executa o Docker, dê uma tag à imagem que você vai enviar para o Oracle Cloud Infrastructure Registry inserindo:
+docker tag karthequian / helloworld: mais recente
+<region-key> .ocir.io / <tenancy-namespace> / <repo-name> / <image-name>: <tag>
+Onde:
+<region-key>é a chave para a região do Oracle Cloud Infrastructure Registry que você está usando. Por exemplo phx,. Consulte o tópico Disponibilidade por região na documentação do Oracle Cloud Infrastructure Registry.
+ocir.io é o nome do Oracle Cloud Infrastructure Registry.
+<tenancy-namespace>é a string de namespace de armazenamento de objeto gerada automaticamente da locação (conforme mostrado na página Informações de locação ) para a qual você deseja enviar a imagem. Por exemplo, o namespace da acme-devlocação pode ser ansh81vru1zp. Observe que seu usuário deve ter acesso ao arrendamento.
+<repo-name>(se especificado) é o nome de um repositório para o qual você deseja enviar a imagem (por exemplo, project01). Observe que especificar um repositório é opcional. Se você não especificar um nome de repositório, o nome da imagem será usado como o nome do repositório no Oracle Cloud Infrastructure Registry.
+<image-name>é o nome que você deseja dar à imagem no Oracle Cloud Infrastructure Registry (por exemplo, helloworld).
+<tag>é uma marca de imagem que você deseja fornecer à imagem no Oracle Cloud Infrastructure Registry (por exemplo, latest).
+Por exemplo:
+docker tag karthequian / helloworld: mais recente
+phx.ocir.io/ansh81vru1zp/helloworld:latest
+Janela do terminal
+Descrição da ilustração
+Revise a lista de imagens disponíveis digitando:
+imagens docker
+Janela do terminal
+Descrição da ilustração
+Observe que, embora duas imagens marcadas sejam mostradas, ambas são baseadas na mesma imagem (com o mesmo id de imagem).
+seção 6Envie a imagem hello-world para o Oracle Cloud Infrastructure Registry
+
+Em uma janela de terminal na máquina cliente que executa o Docker, envie a imagem Docker da máquina cliente para o Oracle Cloud Infrastructure Registry inserindo:
+docker push
+<region-key> .ocir.io / <tenancy-namespace> / <repo-name> / <image-name>: <tag>
+Onde:
+<region-key>é a chave para a região do Oracle Cloud Infrastructure Registry que você está usando. Por exemplo phx,. Consulte o tópico Disponibilidade por região na documentação do Oracle Cloud Infrastructure Registry.
+ocir.io é o nome do Oracle Cloud Infrastructure Registry.
+<tenancy-namespace>é a string de namespace de armazenamento de objeto gerada automaticamente da locação (conforme mostrado na página Informações de locação ) que possui o repositório para o qual você deseja enviar a imagem. Por exemplo, o namespace da acme-devlocação pode ser ansh81vru1zp. Observe que seu usuário deve ter acesso ao arrendamento.
+<repo-name>(se especificado) é o nome de um repositório para o qual você deseja enviar a imagem (por exemplo, project01). Observe que especificar um repositório é opcional. Se você não especificar um nome de repositório, o nome da imagem será usado como o nome do repositório no Oracle Cloud Infrastructure Registry.
+<image-name>é o nome que você deseja dar à imagem no Oracle Cloud Infrastructure Registry (por exemplo, helloworld).
+<tag>é uma marca de imagem que você deseja fornecer à imagem no Oracle Cloud Infrastructure Registry (por exemplo, latest).
+Por exemplo:
+docker push phx.ocir.io/ansh81vru1zp/helloworld:latest
+Janela do terminal
+Descrição da ilustração
+As diferentes camadas da imagem do helloworld são empurradas uma por uma.
+seção 7Verifique se a imagem foi enviada ao Oracle Cloud Infrastructure Registry
+
+Na janela do navegador que mostra o Console com a página Registro exibida, clique em Recarregar . Você vê todos os repositórios no registro aos quais tem acesso, incluindo o repositório privado helloworld que foi criado quando você enviou a imagem helloworld.
+Página de registro
+Descrição da ilustração
+Clique no nome do repositório helloworld que contém a imagem que você acabou de enviar. Entende:
+As diferentes imagens no repositório. Nesse caso, há apenas uma imagem, com a tag mais recente.
+Detalhes sobre o repositório, incluindo quem o criou e quando, seu tamanho e se é um repositório público ou privado
+O leia-me associado ao repositório. Nesse caso, ainda não há leia-me.
+Página de registro
+Descrição da ilustração
+Forneça um leia-me para o repositório helloworld da seguinte maneira:
+Clique no botão Editar na seção Leiame .
+Na Editar guia da caixa de diálogo Editar Leia-me, selecione o Markdown opção, e copie e cole o seguinte descrição da imagem helloworld no conteúdo de campo:
+## Exemplo Hello World
+por Karthequian [retirado do Dockerhub] (https://hub.docker.com/r/karthequian/helloworld/)
+! [Helloworld por Karthquian] (https://raw.githubusercontent.com/oracle/cloud-native-devops-workshop/master/containers/docker001/images/004-hello-world.png)
+Janela Editar Leiame, guia Editar
+Descrição da ilustração
+Clique na guia Visualizar para ver como o leiame aparecerá.
+Janela Editar Leiame, guia Visualizar
+Descrição da ilustração
+Clique em Salvar para fechar a caixa de diálogo Editar Leiame.
+Clique na última marca de imagem. A seção Detalhes mostra o tamanho da imagem, quando ela foi empurrada e por qual usuário, e o número de vezes que a imagem foi puxada.
+Página de registro
+Descrição da ilustração
+(Opcional) Mais tarde, se você deseja puxar a imagem, clique no botão Ações ao lado do nome da imagem e selecione Copiar comando de puxar . Por exemplo, o comando pode ser:
+docker pull phx.ocir.io/ansh81vru1zp/helloworld:latest
+Parabéns! Você puxou com sucesso a imagem helloworld do DockerHub, marcou-a e enviou-a para o Oracle Cloud Infrastructure Registry usando o Docker CLI. Você verificou que a imagem foi enviada com sucesso e adicionou uma descrição no readme.
