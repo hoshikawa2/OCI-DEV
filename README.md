@@ -21,13 +21,35 @@ Este material foi baseado em materiais já existentes **Oracle** (vide seção *
 Observação: Este material faz referência às imagens originais, portanto, se a imagem não aparecer neste material, provavelmente é porque o material original foi reformulado por algum motivo. Pode ser que este motivo seja uma mudança de versão do tutorial ou mesmo do recurso cloud (OKE, OCIR, OCI CLI, etc). Agradeço imensamente se puder avisar, pois poderemos atualizar este material com mais velocidade.
 
 -----
-# T1 - Tutorial 1 - Criando uma conta na OCI
+# T1 - Tutorial 1 - Pré Check-in
+
+
+### T1.1 - Criando uma conta na OCI
 
 Abra a sua conta trial na Oracle Cloud Infrastructure.
 
 Siga este link:
 
     https://videohub.oracle.com/media/1_m4904ocr
+
+### T1.2 - Instalando o kubectl 
+
+Siga este link:
+
+    https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+### T1.3 - Assine sua conta no github
+
+Se você ainda não possui uma conta no github.com, por favor, siga estes passos:
+
+
+*** T1.3.1** Siga este link:
+
+    https://github.com
+    
+**T1.3.2** Preencha seus dados e click em **Signup for GitHub**
+
+![figura](https://github.com/hoshikawa2/OCI-DEV/blob/main/images/github.png?raw=true)
 
 
 ----
