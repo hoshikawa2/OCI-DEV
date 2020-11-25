@@ -661,11 +661,260 @@ Veja que:
 
 Parabéns! Você puxou com sucesso a imagem helloworld do DockerHub, marcou-a e enviou-a para o Oracle Cloud Infrastructure Registry usando o Docker CLI. Você verificou que a imagem foi enviada com sucesso e adicionou uma descrição no readme.
 
+----
+
+# T5 - Implante uma imagem do OCIR para o cluster de OKE 
+
+Este tutorial de 15 minutos mostra como:
+
+- criar um segredo nomeado contendo credenciais do Oracle Cloud Infrastructure
+- adicione o segredo nomeado a um arquivo .yml de manifesto, junto com o nome e a localização de uma imagem para extrair do Oracle Cloud Infrastructure Registry
+- use o arquivo manifest .yml para implantar o aplicativo helloworld em um cluster Kubernetes e criar um balanceador de carga do Oracle Cloud Infrastructure
+- verifique se o aplicativo helloworld está funcionando conforme o esperado e se o balanceador de carga está distribuindo solicitações entre os nós em um cluster
+fundo
+
+### T5.1 - Introdução
+
+
+O Oracle Cloud Infrastructure Container Engine para Kubernetes é um serviço totalmente gerenciado, escalonável e altamente disponível que você pode usar para implantar seus aplicativos em contêineres na nuvem. Use o Container Engine para Kubernetes quando sua equipe de desenvolvimento quiser criar, implantar e gerenciar de maneira confiável aplicativos nativos da nuvem. Você especifica os recursos de computação que seus aplicativos exigem, e o Container Engine for Kubernetes os provisiona no Oracle Cloud Infrastructure em uma locação OCI existente.
+
+Este tutorial pressupõe que você já tenha concluído:
+
+- o tutorial Enviar uma imagem para o Oracle Cloud Infrastructure Registry
+- o tutorial Como criar um cluster com o Oracle Cloud Infrastructure Container Engine para Kubernetes
+
+### T5.2 - O que você precisa?
+
+- Você deve ter atendido os pré-requisitos para o tutorial Enviar uma imagem para o Oracle Cloud Infrastructure Registry e concluído com êxito o tutorial. Refaça o tutorial Enviar uma imagem para o Oracle Cloud Infrastructure Registry se você não o fez:
+ - Crie um token de autenticação. Você precisará do valor desse token de autenticação para concluir este tutorial. Se você não tiver o valor do token de autenticação, volte para o tutorial Enviar uma imagem para o Oracle Cloud Infrastructure Registry e siga as instruções para criar um novo token de autenticação.
+ - Envie a imagem helloworld para um repositório privado no Oracle Cloud Infrastructure Registry. Por padrão, a imagem que você enviou deve ter sido enviada para um repositório privado, que só pode ser acessado fornecendo um token de autenticação.
+- Você deve ter atendido aos pré-requisitos para o tutorial Criação de um cluster com a infraestrutura do Oracle Cloud Container Engine para Kubernetes e concluído com êxito o tutorial. Refaça o tutorial Criação de um cluster com a infraestrutura do Oracle Cloud Container Engine para Kubernetes se você não o fez:
+ - Crie um VCN configurado adequadamente e recursos relacionados (se ainda não existissem).
+ - Crie um novo cluster do Kubernetes e adicione um pool de nós ao novo cluster.
+ - Configure o arquivo de configuração do Kubernetes para o cluster (o arquivo 'kubeconfig' do cluster) como um arquivo nomeado configlocalizado no  $HOME/.kube/configdiretório. O arquivo kubeconfig permite que você acesse o cluster usando kubectl e o painel Kubernetes. Observe que, se você não armazenou o arquivo kubeconfig como $HOME/.kube/config, terá que definir explicitamente a variável de ambiente KUBECONFIG para apontar para o arquivo kubeconfig sempre que usar kubectl em uma nova janela de terminal.
+- Você deve ter cota de serviço de balanceamento de carga de infraestrutura em nuvem da Oracle suficiente disponível em sua região para criar um balanceador de carga de 100 Mbps.
+
+### T5.3 - Preparando-se para o tutorial
+
+**T5.3.1** Confirme se você tem o valor para o Tutorial **auth token** que você criou no tutorial Enviar uma imagem para o Oracle Cloud Infrastructure Registry . 
+Se você não tiver o valor do **token** de autenticação, volte para esse tutorial e siga as instruções para criar um novo token de autenticação.
+
+**T5.3.2** Verifique se você pode usar **kubectl** para se conectar ao cluster criado no tutorial Criando um cluster com o Oracle Cloud Infrastructure Container Engine para Kubernetes inserindo o seguinte comando em uma janela de terminal:
+
+    $ kubectl get nodes
+    
+Você vê detalhes dos nós em execução no cluster. Por exemplo:
+
+    NAME               STATUS   ROLES   AGE   VERSION
+    10.0.10.2          Ready    node    1d    v1.13.5
+    10.0.11.2          Ready    node    1d    v1.13.5
+    10.0.12.2          Ready    node    1d    v1.13.5
+
+Você confirmou que o cluster está instalado e funcionando conforme o esperado. Agora você pode implantar um aplicativo no cluster.
+
+### T5.4 - Crie um secret para o tutorial
+
+
+Para permitir que o Kubernetes extraia uma imagem do Oracle Cloud Infrastructure Registry ao implantar um aplicativo, você precisa criar um segredo do Kubernetes. O segredo inclui todos os detalhes de login que você forneceria se estivesse efetuando login manualmente no Oracle Cloud Infrastructure Registry usando o docker logincomando, incluindo seu token de autenticação.
+
+**T5.4.1** Em uma janela de terminal, digite o seguinte comando:
+
+
+    $ kubectl create secret docker-registry ocirsecret --docker-server=<region-key>.ocir.io --docker-username='<tenancy-namespace>/<oci-username>' --docker-password='<oci-auth-token>' --docker-email='<email-address>'
+
+Onde:
+
+    ocirsecret é o nome do segredo que você está criando e que usará no arquivo de manifesto para se referir ao segredo. Para os fins deste tutorial, você deve nomear o segredo  ocirsecret. Quando tiver concluído o tutorial e estiver criando seus próprios segredos para seu próprio uso, você pode escolher como chamar seus segredos. 
+
+    <region-key>é a chave para a região do Oracle Cloud Infrastructure Registry que você está usando. Por exemplo phx,. Consulte o tópico Disponibilidade por região na documentação do Oracle Cloud Infrastructure Registry.
+    
+    ocir.io é o nome do Oracle Cloud Infrastructure Registry.
+
+    <tenancy-namespace>é a string de namespace de armazenamento de objeto gerado automaticamente da locação (conforme mostrado na página Informações de locação ) contendo o repositório do qual o aplicativo deve obter a imagem. Por exemplo, o namespace da acme-devlocação pode ser ansh81vru1zp.
+
+    <oci-username>é o nome de usuário a ser usado ao puxar a imagem. O nome de usuário deve ter acesso à locação especificada por tenancy-namespace. Por exemplo jdoe@acme.com,. Se a sua locação for federada com o Oracle Identity Cloud Service, use o formato . /oracleidentitycloudservice/<oci-username>
+
+    <oci-auth-token>é o token de autenticação do usuário especificado por oci-username. Por exemplo, k]j64r{1sJSSF-;)K8
+    
+    <email-address>é um endereço de e-mail. É necessário um endereço de e-mail, mas não importa o que você especificar. Por exemplo,jdoe@acme.com
+
+    Observe o uso de aspas simples em torno de strings contendo caracteres especiais.
+
+
+Por exemplo, combinando os exemplos anteriores, você pode inserir:
+
+    $ kubectl criar docker-registry ocirsecret secreto --docker-server = phx.ocir.io --docker-username='ansh81vru1zp/jdoe@acme.com '--docker-password ='​​k]j64r{1sJSSF-;)K8' --docker-email='jdoe@acme.com'
+
+**T5.4.2** Verifique se o segredo foi criado inserindo:
+
+    $ kubectl get secrets
+    
+Detalhes sobre o segredo ocirsecret que você acabou de criar são exibidos.
+
+Depois de criar o segredo, agora você pode consultá-lo no arquivo de manifesto do aplicativo.
+
+### T5.5 - Adicione o segredo e o caminho da imagem ao arquivo de manifesto
+
+Depois de criar o segredo, agora você inclui o nome do segredo no arquivo de manifesto que o Kubernetes usa ao implantar o aplicativo helloworld em um cluster. Você também inclui no arquivo de manifesto o caminho para a imagem helloworld no Oracle Cloud Infrastructure Registry.
+
+**T5.5.1** Crie um novo arquivo de texto com o nome helloworld-lb.yml em um diretório local acessível para kubectl.
+
+**T5.5.2** Abra o novo arquivo helloworld-lb.yml em um editor de texto.
+
+**T5.5.3** Copie e cole o seguinte texto no arquivo helloworld-lb.yml:
+
+	apiVersion: apps/v1
+	kind: Deployment
+	metadata:
+	  name: helloworld-deployment
+	spec:
+	  selector:
+	    matchLabels:
+	      app: helloworld
+	  replicas: 1
+	  template:
+	    metadata:
+	      labels:
+	        app: helloworld
+	    spec:
+	      containers:
+	      - name: helloworld
+	    # enter the path to your image, be sure to include the correct region prefix    
+	        image: <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<tag>
+	        ports:
+	        - containerPort: 80
+	      imagePullSecrets:
+	    # enter the name of the secret you created  
+	      - name: <secret-name>
+	---
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: helloworld-service
+	spec:
+	  type: LoadBalancer
+	  ports:
+	  - port: 80
+	    protocol: TCP
+	    targetPort: 80
+	  selector:
+	    app: helloworld
+
+**T5.5.4** Altere a seguinte linha no arquivo helloworld-lb.yml para incluir o caminho que você especificou ao enviar a imagem helloworld para o Oracle Cloud Infrastructure Registry no tutorial Enviar uma imagem para o Oracle Cloud Infrastructure Registry :
+
+    image: <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<tag>
+    
+Por exemplo, se você deu a tag à imagem phx.ocir.io/ansh81vru1zp/helloworld:latest, altere a linha para ler:
+
+    image: phx.ocir.io/ansh81vru1zp/helloworld:latest
+
+**T5.5.5** Altere a seguinte linha no arquivo helloworld-lb.yml para incluir o nome do segredo que você criou anteriormente:
+
+    name: <secret-name>
+
+**T5.5.6** Como você deu ao segredo o nome ocirsecret, altere a linha para ler:
+
+    name: ocirsecret
+
+**T5.5.7** Salve o arquivo helloworld-lb.yml em um diretório local acessível para kubectl e feche o arquivo.
+
+### T5.6 - Implante o aplicativo helloworld
+
+Tendo atualizado o arquivo de manifesto do aplicativo helloworld, agora você pode implantar o aplicativo.
+
+**T5.6.1** Em uma janela de terminal, implante o aplicativo helloworld de amostra no cluster inserindo:
+
+    $ kubectl create -f <local-path>/helloworld-lb.yml
+    
+onde 
+
+
+    <local-path> é a localização do arquivo helloworld-lb.yml.
+
+As mensagens confirmam que a implantação helloworld-deployment e o balanceador de carga de serviço helloworld-service foram criados.
+
+O balanceador de carga helloworld-service é implementado como um balanceador de carga Oracle Cloud Infrastructure com um back-end configurado para rotear o tráfego de entrada para nós no cluster. Você pode ver o novo balanceador de carga na página Balanceadores de carga no Oracle Cloud Infrastructure Console.
+
+### T5.6 - Verifique se o aplicativo helloworld com carga balanceada está funcionando corretamente
+
+**T5.6.1** Em uma janela de terminal, digite o seguinte comando:
+
+    $ kubectl get services
+    
+Você vê detalhes dos serviços em execução nos nós do cluster. Para o balanceador de carga helloworld-service que você acabou de implantar, você verá:
+
+- o endereço IP externo do balanceador de carga (por exemplo, 129.146.147.91)
+- o número da porta
+
+**T5.6.2** Abra uma nova janela do navegador e digite o url para acessar o aplicativo helloworld no campo URL do navegador . Por exemplo, http://129.146.147.91
+
+Quando o balanceador de carga recebe a solicitação para acessar o aplicativo helloworld, o balanceador de carga encaminha a solicitação para um dos nós disponíveis no cluster. Os resultados da solicitação são retornados ao navegador, que exibe uma página com uma mensagem como:
+
+    Hello
+
+    Is it me you're looking for?
+
+![Janela do navegador](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-and-registry/img/oci-hello-world-visit1.png)
+
+Na parte inferior da página, um contador de visualizações de página mostra o número de vezes que a página foi visitada e inicialmente exibe '1'.
+
+**T5.6.3** Recarregue a página na janela do navegador (por exemplo, clicando em Atualizar ou Recarregar ).
+
+![Janela do navegador](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-and-registry/img/oci-hello-world-visit2.png)
+
+O contador na parte inferior da página agora exibe '2'.
+
+**T5.6.4** Parabéns! Você implantou com sucesso o aplicativo helloworld. O Kubernetes usou o segredo que você criou para extrair a imagem helloworld do Oracle Cloud Infrastructure Registry. Em seguida, ele implantou a imagem e criou um balanceador de carga do Oracle Cloud Infrastructure para distribuir solicitações entre os nós no cluster. Por fim, você verificou se o aplicativo está funcionando conforme o esperado.
+
+
+### T5.7 - Serviço de limpeza
+
+Tendo concluído o tutorial, agora você pode excluir o aplicativo que implementou no cluster. Se quiser liberar recursos do Oracle Cloud Infrastructure, você também pode excluir o VCN e o cluster que criou no tutorial Criando um cluster com o Oracle Cloud Infrastructure Container Engine para Kubernetes . Por outro lado, como demorou um pouco para configurar o VCN e o cluster, é uma boa ideia mantê-los (especialmente o VCN) para seus próprios fins de teste.
+
+**T5.7.1** Em uma janela de terminal, digite o seguinte comando para excluir o aplicativo helloworld:
+
+    $ kubectl delete deployment helloworld-deployment
+    
+Quando você exclui a implantação, todos os pods em execução também são excluídos automaticamente.
+
+**T5.7.2** Digite o seguinte comando para excluir o serviço do balanceador de carga:
+
+    $ kubectl delete service helloworld-service
+    
+Quando você exclui o serviço de balanceador de carga, o balanceador de carga do Oracle Cloud Infrastructure também é excluído automaticamente.
+
+Opcionalmente, você pode liberar recursos do Oracle Cloud Infrastructure excluindo o cluster e o VCN que você criou no tutorial Criando um Cluster com o Oracle Cloud Infrastructure Container Engine para Kubernetes .
+
+**T5.7.3** (opcional) Para excluir o cluster que você criou no tutorial Criar um cluster com a infraestrutura do Oracle Cloud Container Engine para Kubernetes (denominado Tutorial Cluster nesse tutorial):
+
+**T5.7.3.1** No console, abra o menu de navegação. Em Soluções e plataforma , acesse Serviços para desenvolvedores e clique em Clusters Kubernetes .
+
+**T5.7.3.2** Clique no nome do cluster que você criou para o tutorial.
+
+**T5.7.3.3** Clique em Excluir cluster .
+
+**T5.7.3.4** Página de detalhes do cluster
+
+![Descrição da ilustração](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-and-registry/img/oci-delete-cluster.png)
+
+**T5.7.3.5** Confirme que você deseja excluir o cluster.
+
+**T5.7.4** (opcional) Para excluir o VCN que você criou no tutorial Criando um Cluster com o Oracle Cloud Infrastructure Container Engine para Kubernetes (denominado oke-vcn-quick-Tutorial Cluster- <creation_date> naqueletutorial):
+
+**T5.7.4.1** No console, abra o menu de navegação. Em Infraestrutura central , vá para Rede e clique em Redes em nuvem virtual .
+
+**T5.7.4.2** Localize o VCN que você criou para o tutorial.
+
+**T5.7.4.3** Clique no ícone Actions ao lado do VCN que você criou e clique em Terminate .
+
+![Página VCN](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-and-registry/img/oci-vcn-terminate.png)
+
+**T5.7.4.4** Confirme que deseja encerrar o VCN.
 
 ----
 
 
-### T3.E. Limpeza (opcional)
+### T3.E. Limpeza do cluster OKE e VCN (opcional)
 
 Depois de concluir o tutorial, se você deseja liberar recursos do Oracle Cloud Infrastructure, agora pode excluir o VCN e o cluster que criou. Por outro lado, é uma boa ideia mantê-los (especialmente o VCN) para seus próprios fins de teste. Se você pretende seguir o tutorial Extração de uma imagem do Oracle Cloud Infrastructure Registry ao implantar um aplicativo com carga balanceada em um cluster , definitivamente não exclua o VCN e o cluster, porque você os usará nesse tutorial.
 
@@ -692,4 +941,5 @@ Referências:
 
 - https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/index.html
 - https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/index.html
+- https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-and-registry/index.html
 
