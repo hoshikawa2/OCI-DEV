@@ -65,15 +65,16 @@ Use os seguintes comandos OpenSSL para gerar o par de chaves no formato PEM nece
 
 **T1.4.1.2** Gere a chave privada com um dos seguintes comandos.
 
- - Para gerar a chave, criptografada com uma senha longa que você fornece quando solicitado:
+Para gerar a chave, criptografada com uma senha longa que você fornece quando solicitado:
  
     Observação
 
     Recomendamos que você use uma senha longa para sua chave.
     
-    openssl genrsa -out ~/.oci/oci_api_key.pem -aes128 2048                    
+    openssl genrsa -out ~/.oci/oci_api_key.pem -aes128 2048       
+                 
 
- - Para gerar a chave sem senha:
+Para gerar a chave sem senha:
 
     openssl genrsa -out ~/.oci/oci_api_key.pem 2048                        
     
