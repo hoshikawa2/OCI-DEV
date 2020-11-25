@@ -1,4 +1,4 @@
-#T1 - Tutorial 1 - Criando uma conta na OCI
+# T1 - Tutorial 1 - Criando uma conta na OCI
 
 Abra a sua conta trial na Oracle Cloud Infrastructure.
 
