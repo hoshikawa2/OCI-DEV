@@ -40,8 +40,7 @@ A. Criando a Instância do OKE
 A1. Em um navegador, acesse o url que você recebeu para fazer login no Oracle Cloud Infrastructure.
 
 Página de login
-![Descrição da ilustração]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-login-page.png)
+![Descrição da ilustração](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-login-page.png)
 
 A2. Especifique um username no qual você tenha as permissões apropriadas para criar clusters. Você herda essas permissões de uma das seguintes maneiras:
  - Por pertencer ao grupo Administradores da locação.
@@ -57,46 +56,38 @@ B1. No console, abra o menu de navegação. Em Soluções e plataforma , acesse 
 
 B2. Escolha um compartimento no qual você tenha permissão para trabalhar e no qual deseja criar o novo cluster e os recursos de rede associados.
 
-![Página de clusters]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-console-create-cluster.png)
+![Página de clusters](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-console-create-cluster.png)
 
 B3. Na página Clusters , clique em Criar Cluster .
 
 B4. Na caixa de diálogo Criar Cluster , clique em Criação Rápida e em Iniciar Fluxo de Trabalho.
 
-![Caixa de diálogo Criar Solução de Cluster]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-solution-v2.png)
+![Caixa de diálogo Criar Solução de Cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-solution-v2.png)
 
 B5. Na página Criar Cluster , altere o valor do marcador no campo Nome e digite Tutorial Cluster.
 
-![Criação de Cluster - página Criar Cluster]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-complete-top-v2.png)
+![Criação de Cluster - página Criar Cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-complete-top-v2.png)
 
 B6. Clique em Avançar para revisar os detalhes inseridos para o novo cluster.
-![Criação de cluster - página de revisão]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-review-top-v2.png)
+![Criação de cluster - página de revisão](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-review-top-v2.png)
 
 B7. Na página Revisar , clique em Criar Cluster para criar os novos recursos de rede e o novo cluster.
 Você vê os diferentes recursos de rede sendo criados para você.
 
-![Diálogo de status de criação de cluster]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-creation-status-top-v1.png)
+![Diálogo de status de criação de cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-creation-status-top-v1.png)
 
 
 B8. Clique em Fechar para retornar ao console.
-![Diálogo de status de criação de cluster]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-creation-status-bottom-v2.png)
+![Diálogo de status de criação de cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-creation-status-bottom-v2.png)
 
 
 B9. O novo cluster é mostrado na página Detalhes do Cluster . Depois de criado, o novo cluster tem o status Ativo.
-![Página de detalhes do cluster]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-clusters-page-active.png)
+![Página de detalhes do cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-clusters-page-active.png)
 
 
 B10. Em Recursos , selecione Pools de nós e clique no nome do pool de nós no cluster que você acabou de criar (pool1). Em Recursos , selecione Nós e role para baixo para ver os detalhes dos novos nós de trabalho (instâncias de computação) no pool de nós.
 
-![Recursos]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-clusters-page-nodepool.png)
+![Recursos](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-clusters-page-nodepool.png)
 
 ----
 
@@ -224,8 +215,7 @@ D4.6 Abra uma nova janela do navegador e acesse
  para exibir o painel do Kubernetes.
  
 
-![Página de login do painel do Kubernetes]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-k8s-dashboard-sign-in.png)
+![Página de login do painel do Kubernetes](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-k8s-dashboard-sign-in.png)
 
 D4.7 Selecione a opção Token e cole o valor do token:elemento que você copiou anteriormente no campo Token .
 
@@ -233,8 +223,7 @@ D4.8 Clique em Entrar .
 
 D4.9 Clique em Visão geral para ver se o Kubernetes é o único serviço em execução no cluster.
 
-![Página de visão geral do painel do Kubernetes]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-k8s-dashboard-overview.png)
+![Página de visão geral do painel do Kubernetes](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-k8s-dashboard-overview.png)
 
 D4.10 Parabéns! Você criou com êxito um novo cluster e confirmou que o novo cluster está instalado e funcionando conforme o esperado.
 
@@ -246,8 +235,7 @@ Depois de concluir o tutorial, se você deseja liberar recursos do Oracle Cloud 
 
 E1. (opcional) Volte para a janela do navegador com a página Detalhes do Cluster mostrando o Cluster do Tutorial, clique em Excluir Cluster e confirme se deseja excluir o Cluster do Tutorial criado.
 
-![Página de detalhes do cluster]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-delete-cluster.png)
+![Página de detalhes do cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-delete-cluster.png)
 Descrição da ilustração
 
 E2. (opcional) Exclua o VCN criado durante o tutorial:
@@ -258,7 +246,6 @@ E2.2 Localize o VCN que você criou durante este tutorial.
 
 E2.3 Clique no ícone Ações ao lado do VCN e clique em Terminar .
 
-![Página VCN]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-vcn-terminate.png)
+![Página VCN](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-vcn-terminate.png)
 
 E2.3 Confirme que deseja encerrar o VCN.
