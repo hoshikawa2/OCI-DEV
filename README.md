@@ -106,7 +106,7 @@ Para configurar a política de execução remota para PowerShell, execute o segu
        install.ps1 -AcceptAllDefaults 
 
 
-**Instruções do script de instalação**
+### T2.5 - Instruções do script de instalação
 
 O script de instalação solicita as seguintes informações.
 
@@ -118,6 +118,73 @@ O script de instalação solicita as seguintes informações.
 
     Quando solicitado a atualizar o CLI para a versão mais recente, responda com Y para sobrescrever uma instalação existente.
     Quando solicitado a atualizar seu PATH, responda com Y para poder invocar a CLI sem fornecer o caminho completo para o executável. Isso adicionará oci.exe ao seu PATH.
+
+### T2.6 - Configurando o arquivo config
+
+Antes de usar a CLI, você deve criar um arquivo de configuração que contém as credenciais necessárias para trabalhar com o **Oracle Cloud Infrastructure** .
+
+Para isto, vamos seguir o roteiro:
+- Buscar as informações de Tenant e Usuário (OCID)
+- Subir a chave pública para o seu usuário
+- Executar o comando para configurar o OCI CLI
+
+Vamos lá
+
+ 
+**T2.6.1 - OCI do Tenant**
+
+**T2.6.1.1** Abra o menu de navegação , em Governança e administração
+
+**T2.6.1.2** Vá para Administração e clique em Detalhes de locação .
+
+**T2.6.1.3** O OCID do tenant é mostrado em Informações de tenant . 
+
+**T2.6.1.4** Clique em Copiar para copiá-lo para a área de transferência e guarde em suas anotações para uso posterior
+
+
+**T2.6.2 - OCI do Usuário**
+
+**T2.6.2.1** Se você estiver conectado como o usuário:
+**T2.6.2.1.1** Abra o menu Perfil (Menu Hambúrger) e clique em Configurações do usuário .
+
+**T2.6.2.1.2** Se você for um administrador fazendo isso para outro usuário: Abra o menu de navegação . Em Governança e Administração , acesse Identidade e clique em Usuários . Selecione o usuário na lista.
+
+**T2.6.2.1.3** O OCID do usuário é mostrado em Informações do usuário . 
+**T2.6.2.1.4** Clique em Copiar para copiá-lo para a área de transferência e guarde em suas anotações para uso posterior
+
+
+**T2.6.3 - Como fazer upload da chave pública**
+
+Você pode fazer upload da chave pública PEM no console , que pode ser acessado fazendo login aqui: https://cloud.oracle.com . Se você não tiver um login e senha para o console , entre em contato com um administrador.
+
+Abra o Console , e login.
+Visualize os detalhes do usuário que chamará a API com o par de chaves:
+Se você estiver conectado como o usuário:
+Abra o menu Perfil ( ) e clique em Configurações do usuário . Ícone do menu do usuário
+Se você for um administrador fazendo isso para outro usuário: Abra o menu de navegação . Em Governança e Administração , acesse Identidade e clique em Usuários . Selecione o usuário na lista.
+Clique em Adicionar chave pública .
+Cole o conteúdo da chave pública PEM na caixa de diálogo e clique em Adicionar .
+A impressão digital da chave é exibida (por exemplo, 12: 34: 56: 78: 90: ab: cd: ef: 12: 34: 56: 78: 90: ab: cd: ef).
+
+**T2.6.4 Configurando OCI CLI**
+
+Para que a CLI o guie pelo processo de configuração inicial, use o comando:
+
+    oci setup config
+
+
+**O comando solicita as informações necessárias para o arquivo de configuração e as chaves públicas / privadas da API.**
+
+    A caixa de diálogo de configuração gera um par de chaves API e cria o arquivo de configuração.
+
+Você vai precisar de algumas informações para preencher a configuração quando executar o comando **oci setup config**. Estas informações você anotou nos passos anteriores.
+
+- OCID do Tenant
+- OCID do seu Usuário na Cloud Oracle
+
+
+
+
 
 ----
 
