@@ -43,7 +43,7 @@ Siga este link:
 Se você ainda não possui uma conta no github.com, por favor, siga estes passos:
 
 
-*** T1.3.1** Siga este link:
+**T1.3.1** Siga este link:
 
     https://github.com
     
@@ -386,97 +386,96 @@ Neste tutorial, você usa as configurações padrão para definir um novo cluste
 
 ### T3.1. Criando a Instância do OKE
 
-**T3.1.1.** Em um navegador, acesse o url que você recebeu para fazer login no Oracle Cloud Infrastructure.
+**T3.1.1** Em um navegador, acesse o url que você recebeu para fazer login no Oracle Cloud Infrastructure.
 
 Página de login
 ![Descrição da ilustração](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-login-page.png)
 
-**T3.1.2.** Especifique um username no qual você tenha as permissões apropriadas para criar clusters. Você herda essas permissões de uma das seguintes maneiras:
+**T3.1.2** Especifique um username no qual você tenha as permissões apropriadas para criar clusters. Você herda essas permissões de uma das seguintes maneiras:
  - Por pertencer ao grupo Administradores da tenant.
  - Por pertencer a outro grupo ao qual uma política concede as permissões apropriadas do Container Engine para Kubernetes. Como você criará e configurará um cluster e recursos de rede associados durante o tutorial, as políticas também devem conceder ao grupo as permissões listadas em O que você precisa? seção.
 
-**T3.1.3.** Digite seu nome de usuário e senha.
+**T3.1.3** Digite seu nome de usuário e senha.
 
 ---
 
-### T3.2. Definir os detalhes do cluster
+### T3.2 - Definir os detalhes do cluster
 
-**T3.2.1.** No console, abra o menu de navegação. Em Soluções e plataforma , acesse Serviços para desenvolvedores e clique em Clusters Kubernetes.
+**T3.2.1** No console, abra o menu de navegação. Em Soluções e plataforma , acesse Serviços para desenvolvedores e clique em Clusters Kubernetes.
 
-**T3.2.2.** Escolha um compartimento no qual você tenha permissão para trabalhar e no qual deseja criar o novo cluster e os recursos de rede associados.
+**T3.2.2** Escolha um compartimento no qual você tenha permissão para trabalhar e no qual deseja criar o novo cluster e os recursos de rede associados.
 
 ![Página de clusters](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-console-create-cluster.png)
 
-**T3.2.3.** Na página Clusters , clique em Criar Cluster .
+**T3.2.3** Na página Clusters , clique em Criar Cluster .
 
-**T3.2.4.** Na caixa de diálogo Criar Cluster , clique em Criação Rápida e em Iniciar Fluxo de Trabalho.
+**T3.2.4** Na caixa de diálogo Criar Cluster , clique em Criação Rápida e em Iniciar Fluxo de Trabalho.
 
 ![Caixa de diálogo Criar Solução de Cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-solution-v2.png)
 
-**T3.2.5.** Na página Criar Cluster , altere o valor do marcador no campo Nome e digite Tutorial Cluster.
+**T3.2.5** Na página Criar Cluster , altere o valor do marcador no campo Nome e digite Tutorial Cluster.
 
 ![Criação de Cluster - página Criar Cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-complete-top-v2.png)
 
-**T3.2.6.** Clique em Avançar para revisar os detalhes inseridos para o novo cluster.
+**T3.2.6** Clique em Avançar para revisar os detalhes inseridos para o novo cluster.
 ![Criação de cluster - página de revisão](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-review-top-v2.png)
 
-**T3.2.7.** Na página Revisar , clique em Criar Cluster para criar os novos recursos de rede e o novo cluster.
+**T3.2.7** Na página Revisar , clique em Criar Cluster para criar os novos recursos de rede e o novo cluster.
 Você vê os diferentes recursos de rede sendo criados para você.
 
 ![Diálogo de status de criação de cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-creation-status-top-v1.png)
 
 
-**T3.2.8.** Clique em Fechar para retornar ao console.
+**T3.2.8** Clique em Fechar para retornar ao console.
 ![Diálogo de status de criação de cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-create-cluster-creation-status-bottom-v2.png)
 
 
-**T3.2.9.** O novo cluster é mostrado na página Detalhes do Cluster . Depois de criado, o novo cluster tem o status Ativo.
+**T3.2.9** O novo cluster é mostrado na página Detalhes do Cluster . Depois de criado, o novo cluster tem o status Ativo.
 ![Página de detalhes do cluster](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-clusters-page-active.png)
 
 
-**T3.2.10.** Em Recursos , selecione Pools de nós e clique no nome do pool de nós no cluster que você acabou de criar (pool1). Em Recursos , selecione Nós e role para baixo para ver os detalhes dos novos nós de trabalho (instâncias de computação) no pool de nós.
+**T3.2.10** Em Recursos , selecione Pools de nós e clique no nome do pool de nós no cluster que você acabou de criar (pool1). Em Recursos , selecione Nós e role para baixo para ver os detalhes dos novos nós de trabalho (instâncias de computação) no pool de nós.
 
 ![Recursos](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-clusters-page-nodepool.png)
 
 ----
 
-### T3.3. Configure o arquivo kubeconfig para o cluster
+### T3.3 - Configure o arquivo kubeconfig para o cluster
 
-**T3.3.1.** Confirme que você já fez o seguinte:
+**T3.3.1** Confirme que você já fez o seguinte:
  - Gerou um par de chaves de assinatura de API.
  - Adicionado o valor da chave pública do par de chaves de assinatura da API às Configurações do usuário para seu nome de usuário.
  - Instalado e configurado o Oracle Cloud Infrastructure CLI (versão 2.6.4 ou posterior).
-**** REVISAR
-Se você não fez uma ou mais das opções acima, ou não tem certeza, consulte o tópico Configurando o acesso ao cluster na documentação do Container Engine para Kubernetes.
 
-**T3.3.2.** Com a página Node Pools mostrando detalhes de pool1, clique em Tutorial Cluster no caminho de navegação. Clique em Access Cluster para exibir a caixa de diálogo Access Your Cluster e, em seguida, clique em Local Access .
+
+**T3.3.2** Com a página Node Pools mostrando detalhes de pool1, clique em Tutorial Cluster no caminho de navegação. Clique em Access Cluster para exibir a caixa de diálogo Access Your Cluster e, em seguida, clique em Local Access .
 Como acessar a caixa de diálogo do Kubeconfig
 Descrição da ilustração
 
-**T3.3.3.** Em uma janela de terminal, crie um diretório para conter o arquivo kubeconfig, fornecendo ao diretório o nome e a localização padrão esperados $HOME/.kube. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
+**T3.3.3** Em uma janela de terminal, crie um diretório para conter o arquivo kubeconfig, fornecendo ao diretório o nome e a localização padrão esperados $HOME/.kube. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
 
 
        $ mkdir -p $ HOME / .kube
 
-**T3.3.4.** Execute o comando CLI do Oracle Cloud Infrastructure para configurar o arquivo kubeconfig e salve-o com o nome e localização padrão esperados $HOME/.kube/config. Esse nome e local garantem que o arquivo kubeconfig esteja acessível para kubectl e o painel do Kubernetes sempre que você executá-los em uma janela de terminal. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ):
+**T3.3.4** Execute o comando CLI do Oracle Cloud Infrastructure para configurar o arquivo kubeconfig e salve-o com o nome e localização padrão esperados $HOME/.kube/config. Esse nome e local garantem que o arquivo kubeconfig esteja acessível para kubectl e o painel do Kubernetes sempre que você executá-los em uma janela de terminal. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ):
 
     $ oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.phx.aaaaaaaaae ... --file $ HOME / .kube / config --region us-phoenix-1 --token-version 2.0.0
 
 onde ocid1.cluster.oc1.phx.aaaaaaaaae ... é o OCID do cluster atual. Por conveniência, o comando na caixa de diálogo Acessar seu cluster já inclui o OCID do cluster.
 
-**T3.3.5.** Configure o valor da variável de ambiente KUBECONFIG para o nome e localização do arquivo kubeconfig. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
+**T3.3.5** Configure o valor da variável de ambiente KUBECONFIG para o nome e localização do arquivo kubeconfig. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
 
     $ export KUBECONFIG = $ HOME / .kube / config
 
-**T3.3.6.** Clique em Fechar para fechar a caixa de diálogo Acessar seu cluster .
+**T3.3.6** Clique em Fechar para fechar a caixa de diálogo Acessar seu cluster .
 
 ----
 
-### T3.4. Verifique o acesso do painel de kubectl e Kubernetes ao cluster
+### T3.4 - Verifique o acesso do painel de kubectl e Kubernetes ao cluster
 
-**T3.4.1.** Confirme se você já instalou o kubectl. Se você ainda não fez isso, consulte a documentação do kubectl .
+**T3.4.1** Confirme se você já instalou o kubectl. Se você ainda não fez isso, consulte a documentação do kubectl .
 
-**T3.4.2.** Verifique se você pode usar kubectl para se conectar ao novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
+**T3.4.2** Verifique se você pode usar kubectl para se conectar ao novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
 
     $ kubectl get nodes
 
@@ -487,11 +486,11 @@ Você vê detalhes dos nós em execução no cluster. Por exemplo:
     10.0.11.2 Nó pronto 1d v1.13.5
     10.0.12.2 Nó pronto 1d v1.13.5
 
-**T3.4.3.** Implante o painel do Kubernetes no novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
+**T3.4.3** Implante o painel do Kubernetes no novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
 
     $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.3/aio/deploy/recommended.yaml
 
-**T3.4.4.** Verifique se você pode usar o painel Kubernetes para se conectar ao cluster:
+**T3.4.4** Verifique se você pode usar o painel Kubernetes para se conectar ao cluster:
 
 **T3.4.4.1** Em um editor de texto, crie um arquivo chamado oke-admin-service-account.yaml com o seguinte conteúdo:
 
