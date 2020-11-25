@@ -1,3 +1,26 @@
+# OCI DEV
+
+O objetivo deste workshop é permitir ao participante que deseja conhecer um pouco do mundo de containers docker, kubernetes e cloud.
+
+Em nosso dia-a-dia, ouvimos muito sobre estes termos mas muitas vezes, entender cada conceito se torna algo bastante complexo. Certo?
+
+O workshop irá compreender os seguintes conceitos:
+
+- Cloud
+- Containers Docker
+- Kubernetes
+- Repositório de Imagens Docker
+- Deployments
+- Load-Balancer
+
+Esperamos que, ao final deste workshop, o participante possa entender esses conceitos e praticar cada vez mais neste mundo de aplicações distribuídas.
+
+
+Este material foi baseado em materiais já existentes **Oracle** (vide seção **Referências** ao final) e foi organizado especialmente para tornar a experiência prática deste workshop mais agradável. O material original se encontra em inglês.
+
+Observação: Este material faz referência às imagens originais, portanto, se a imagem não aparecer neste material, provavelmente é porque o material original foi reformulado por algum motivo. Pode ser que este motivo seja uma mudança de versão do tutorial ou mesmo do recurso cloud (OKE, OCIR, OCI CLI, etc). Agradeço imensamente se puder avisar, pois poderemos atualizar este material com mais velocidade.
+
+-----
 # T1 - Tutorial 1 - Criando uma conta na OCI
 
 Abra a sua conta trial na Oracle Cloud Infrastructure.
