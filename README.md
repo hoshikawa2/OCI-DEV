@@ -9,7 +9,7 @@ Siga este link:
 
 
 
-#T2 - Tutorial 2 - Criando a Instância do OKE
+# T2 - Tutorial 2 - Criando a Instância do OKE
 
 **Este tutorial de 10 minutos mostra como:**
 
@@ -42,7 +42,7 @@ Neste tutorial, você usa as configurações padrão para definir um novo cluste
 - Você deve ter instalado e configurado a ferramenta de linha de comando do Kubernetes kubectl. Se você ainda não fez isso, consulte a documentação do kubectl .
 
 
-###T2.A. Criando a Instância do OKE
+### T2.A. Criando a Instância do OKE
 
 **T2.A1.** Em um navegador, acesse o url que você recebeu para fazer login no Oracle Cloud Infrastructure.
 
@@ -57,7 +57,7 @@ Página de login
 
 ---
 
-###T2.B. Definir os detalhes do cluster
+### T2.B. Definir os detalhes do cluster
 
 **T2.B1.** No console, abra o menu de navegação. Em Soluções e plataforma , acesse Serviços para desenvolvedores e clique em Clusters Kubernetes.
 
@@ -98,7 +98,7 @@ Você vê os diferentes recursos de rede sendo criados para você.
 
 ----
 
-###T2.C. Configure o arquivo kubeconfig para o cluster
+### T2.C. Configure o arquivo kubeconfig para o cluster
 
 **T2.C1.** Confirme que você já fez o seguinte:
  - Gerou um par de chaves de assinatura de API.
@@ -130,7 +130,7 @@ onde ocid1.cluster.oc1.phx.aaaaaaaaae ... é o OCID do cluster atual. Por conven
 
 ----
 
-###T2.D. Verifique o acesso do painel de kubectl e Kubernetes ao cluster
+### T2.D. Verifique o acesso do painel de kubectl e Kubernetes ao cluster
 
 **T2.D1.** Confirme se você já instalou o kubectl. Se você ainda não fez isso, consulte a documentação do kubectl .
 
@@ -236,7 +236,7 @@ conectar ao painel.
 
 ----
 
-###T2.E. Limpeza (opcional)
+### T2.E. Limpeza (opcional)
 
 Depois de concluir o tutorial, se você deseja liberar recursos do Oracle Cloud Infrastructure, agora pode excluir o VCN e o cluster que criou. Por outro lado, é uma boa ideia mantê-los (especialmente o VCN) para seus próprios fins de teste. Se você pretende seguir o tutorial Extração de uma imagem do Oracle Cloud Infrastructure Registry ao implantar um aplicativo com carga balanceada em um cluster , definitivamente não exclua o VCN e o cluster, porque você os usará nesse tutorial.
 
