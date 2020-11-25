@@ -293,7 +293,7 @@ Você pode fazer upload da chave pública PEM no console , que pode ser acessado
 
 **T2.6.3.2.3** Clique em Adicionar chave pública .
 
-**T2.6.3.2.4** Cole o conteúdo da chave pública PEM (as chaves estão no diretório "chaves para os labs" deste material) na caixa de diálogo e clique em Adicionar .
+**T2.6.3.2.4** Cole o conteúdo da chave pública PEM na caixa de diálogo e clique em Adicionar .
 
     A impressão digital da chave é exibida (por exemplo, 12: 34: 56: 78: 90: ab: cd: ef: 12: 34: 56: 78: 90: ab: cd: ef).
 
@@ -1059,4 +1059,6 @@ Referências:
 - https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/index.html
 - https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/index.html
 - https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-and-registry/index.html
+- https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm#two
+
 
