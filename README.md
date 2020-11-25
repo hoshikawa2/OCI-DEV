@@ -516,8 +516,7 @@ Para enviar imagens para o Oracle Cloud Infrastructure Registry, você deve pert
 
 **T4.3.1** Em um navegador, acesse o url que você recebeu para fazer login no Oracle Cloud Infrastructure.
 
-![Página de login]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-login-page.png)
+![Página de login](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-login-page.png)
 
 **T4.3.2** Especifique o seu tenant na qual você tenha as permissões apropriadas para criar repositórios no Oracle Cloud Infrastructure Registry. Você herda essas permissões de uma das seguintes maneiras:
 
@@ -534,13 +533,11 @@ Este tutorial assume que o nome de usuário é jdoe@acme.com.
 
 **T4.4.1** No canto superior direito do console, abra o menu Usuário ( Menu do usuário) e clique em Configurações do usuário .
 
-![Tela do console]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-console-settings.png)
+![Tela do console](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-console-settings.png)
 
 **T4.4.2** Na página Tokens de autenticação , clique em Gerar token .
 
-![Caixa de diálogo de geração de token]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-auth-tokens.png)
+![Caixa de diálogo de geração de token](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-auth-tokens.png)
 
 **T4.4.3** Insira Tutorial auth tokenuma descrição amigável para o token de autenticação e clique em Gerar token . O novo token de autenticação é exibido.
 
@@ -553,14 +550,13 @@ Confirme se você pode acessar o Oracle Cloud Infrastructure Registry:
 - Escolha a região em que você estará trabalhando (por exemplo, us-phoenix-1). 
 - Revise os repositórios que já existem. Este tutorial assume que nenhum repositório foi criado ainda.
 
-![Página de registro]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-registry-no-images.png)
+![Página de registro](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-registry-no-images.png)
 
 ### T4.5 - Faça login no Oracle Cloud Infrastructure Registry a partir do Docker CLI
 
 **T4.5.1** Em uma janela de terminal na máquina cliente que executa o Docker, faça login no Oracle Cloud Infrastructure Registry digitando:
 
-    docker login <region-key> .ocir.io
+    docker login <region-key>.ocir.io
     
 onde **<region-key>** está a chave para a região do Oracle Cloud Infrastructure Registry que você está usando. 
 
@@ -573,82 +569,125 @@ Por exemplo ansh81vru1zp/jdoe@acme.com,. Se a sua locação for federada com o O
 
 **T4.5.3** Quando solicitado, digite o token de autenticação que você copiou anteriormente como a senha.
 
-![Janela do terminal]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-login.png)
+![Janela do terminal](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-login.png)
 
 ### T4.6 - Extraia a imagem hello-world do DockerHub
 
 Em uma janela de terminal na máquina cliente que executa o Docker, digite docker pull karthequian/helloworld:latestpara recuperar a versão mais recente da imagem hello-world do DockerHub.
 
-![Janela do terminal]
-(https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-pull.png)
+![Janela do terminal](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-pull.png)
 
 As diferentes camadas da imagem do helloworld são puxadas separadamente.
-seção 5Marque a imagem para empurrar
+
+### T4.7 - Marque a imagem para empurrar
 
 Em uma janela de terminal na máquina cliente que executa o Docker, dê uma tag à imagem que você vai enviar para o Oracle Cloud Infrastructure Registry inserindo:
-docker tag karthequian / helloworld: mais recente
-<region-key> .ocir.io / <tenancy-namespace> / <repo-name> / <image-name>: <tag>
+
+    docker tag karthequian/helloworld:latest
+    <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<tag>
+    
 Onde:
-<region-key>é a chave para a região do Oracle Cloud Infrastructure Registry que você está usando. Por exemplo phx,. Consulte o tópico Disponibilidade por região na documentação do Oracle Cloud Infrastructure Registry.
-ocir.io é o nome do Oracle Cloud Infrastructure Registry.
-<tenancy-namespace>é a string de namespace de armazenamento de objeto gerada automaticamente da locação (conforme mostrado na página Informações de locação ) para a qual você deseja enviar a imagem. Por exemplo, o namespace da acme-devlocação pode ser ansh81vru1zp. Observe que seu usuário deve ter acesso ao arrendamento.
-<repo-name>(se especificado) é o nome de um repositório para o qual você deseja enviar a imagem (por exemplo, project01). Observe que especificar um repositório é opcional. Se você não especificar um nome de repositório, o nome da imagem será usado como o nome do repositório no Oracle Cloud Infrastructure Registry.
-<image-name>é o nome que você deseja dar à imagem no Oracle Cloud Infrastructure Registry (por exemplo, helloworld).
-<tag>é uma marca de imagem que você deseja fornecer à imagem no Oracle Cloud Infrastructure Registry (por exemplo, latest).
+
+    <region-key> é a chave para a região do Oracle Cloud Infrastructure Registry que você está usando. Por exemplo phx,. Consulte o tópico Disponibilidade por região na documentação do Oracle Cloud Infrastructure Registry.
+        
+    ocir.io é o nome do Oracle Cloud Infrastructure Registry.
+
+    <tenancy-namespace>é a string de namespace de armazenamento de objeto gerada automaticamente da locação (conforme mostrado na página Informações de locação ) para a qual você deseja enviar a imagem. Por exemplo, o namespace da acme-devlocação pode ser ansh81vru1zp. Observe que seu usuário deve ter acesso ao arrendamento.
+
+    <repo-name>(se especificado) é o nome de um repositório para o qual você deseja enviar a imagem (por exemplo, project01). Observe que especificar um repositório é opcional. Se você não especificar um nome de repositório, o nome da imagem será usado como o nome do repositório no Oracle Cloud Infrastructure Registry.
+
+    <image-name>é o nome que você deseja dar à imagem no Oracle Cloud Infrastructure Registry (por exemplo, helloworld).
+
+    <tag>é uma marca de imagem que você deseja fornecer à imagem no Oracle Cloud Infrastructure Registry (por exemplo, latest).
+    
 Por exemplo:
-docker tag karthequian / helloworld: mais recente
-phx.ocir.io/ansh81vru1zp/helloworld:latest
-Janela do terminal
-Descrição da ilustração
-Revise a lista de imagens disponíveis digitando:
-imagens docker
-Janela do terminal
-Descrição da ilustração
+
+    docker tag karthequian/helloworld:latest phx.ocir.io/ansh81vru1zp/helloworld:latest
+    
+![Janela do terminal](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-tag.png)
+
+**T4.7.1** Revise a lista de imagens disponíveis digitando:
+
+    docker images
+    
+![Janela do terminal](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-images.png)
+
 Observe que, embora duas imagens marcadas sejam mostradas, ambas são baseadas na mesma imagem (com o mesmo id de imagem).
-seção 6Envie a imagem hello-world para o Oracle Cloud Infrastructure Registry
+
+### T4.8 - Envie a imagem hello-world para o Oracle Cloud Infrastructure Registry
 
 Em uma janela de terminal na máquina cliente que executa o Docker, envie a imagem Docker da máquina cliente para o Oracle Cloud Infrastructure Registry inserindo:
-docker push
-<region-key> .ocir.io / <tenancy-namespace> / <repo-name> / <image-name>: <tag>
-Onde:
-<region-key>é a chave para a região do Oracle Cloud Infrastructure Registry que você está usando. Por exemplo phx,. Consulte o tópico Disponibilidade por região na documentação do Oracle Cloud Infrastructure Registry.
-ocir.io é o nome do Oracle Cloud Infrastructure Registry.
-<tenancy-namespace>é a string de namespace de armazenamento de objeto gerada automaticamente da locação (conforme mostrado na página Informações de locação ) que possui o repositório para o qual você deseja enviar a imagem. Por exemplo, o namespace da acme-devlocação pode ser ansh81vru1zp. Observe que seu usuário deve ter acesso ao arrendamento.
-<repo-name>(se especificado) é o nome de um repositório para o qual você deseja enviar a imagem (por exemplo, project01). Observe que especificar um repositório é opcional. Se você não especificar um nome de repositório, o nome da imagem será usado como o nome do repositório no Oracle Cloud Infrastructure Registry.
-<image-name>é o nome que você deseja dar à imagem no Oracle Cloud Infrastructure Registry (por exemplo, helloworld).
-<tag>é uma marca de imagem que você deseja fornecer à imagem no Oracle Cloud Infrastructure Registry (por exemplo, latest).
-Por exemplo:
-docker push phx.ocir.io/ansh81vru1zp/helloworld:latest
-Janela do terminal
-Descrição da ilustração
-As diferentes camadas da imagem do helloworld são empurradas uma por uma.
-seção 7Verifique se a imagem foi enviada ao Oracle Cloud Infrastructure Registry
 
-Na janela do navegador que mostra o Console com a página Registro exibida, clique em Recarregar . Você vê todos os repositórios no registro aos quais tem acesso, incluindo o repositório privado helloworld que foi criado quando você enviou a imagem helloworld.
-Página de registro
-Descrição da ilustração
-Clique no nome do repositório helloworld que contém a imagem que você acabou de enviar. Entende:
-As diferentes imagens no repositório. Nesse caso, há apenas uma imagem, com a tag mais recente.
-Detalhes sobre o repositório, incluindo quem o criou e quando, seu tamanho e se é um repositório público ou privado
-O leia-me associado ao repositório. Nesse caso, ainda não há leia-me.
-Página de registro
-Descrição da ilustração
-Forneça um leia-me para o repositório helloworld da seguinte maneira:
-Clique no botão Editar na seção Leiame .
-Na Editar guia da caixa de diálogo Editar Leia-me, selecione o Markdown opção, e copie e cole o seguinte descrição da imagem helloworld no conteúdo de campo:
-## Exemplo Hello World
-por Karthequian [retirado do Dockerhub] (https://hub.docker.com/r/karthequian/helloworld/)
-! [Helloworld por Karthquian] (https://raw.githubusercontent.com/oracle/cloud-native-devops-workshop/master/containers/docker001/images/004-hello-world.png)
-Janela Editar Leiame, guia Editar
-Descrição da ilustração
-Clique na guia Visualizar para ver como o leiame aparecerá.
-Janela Editar Leiame, guia Visualizar
-Descrição da ilustração
-Clique em Salvar para fechar a caixa de diálogo Editar Leiame.
-Clique na última marca de imagem. A seção Detalhes mostra o tamanho da imagem, quando ela foi empurrada e por qual usuário, e o número de vezes que a imagem foi puxada.
-Página de registro
-Descrição da ilustração
-(Opcional) Mais tarde, se você deseja puxar a imagem, clique no botão Ações ao lado do nome da imagem e selecione Copiar comando de puxar . Por exemplo, o comando pode ser:
-docker pull phx.ocir.io/ansh81vru1zp/helloworld:latest
+    docker push <region-key>.ocir.io/<tenancy-namespace>/<repo-name>/<image-name>:<tag>
+    
+Onde:
+
+    <region-key>é a chave para a região do Oracle Cloud Infrastructure Registry que você está usando. Por exemplo phx,. Consulte o tópico Disponibilidade por região na documentação do Oracle Cloud Infrastructure Registry.
+ocir.io é o nome do Oracle Cloud Infrastructure Registry.
+
+    <tenancy-namespace>é a string de namespace de armazenamento de objeto gerada automaticamente da locação (conforme mostrado na página Informações de locação ) que possui o repositório para o qual você deseja enviar a imagem. Por exemplo, o namespace da acme-devlocação pode ser ansh81vru1zp. Observe que seu usuário deve ter acesso ao arrendamento.
+
+    <repo-name>(se especificado) é o nome de um repositório para o qual você deseja enviar a imagem (por exemplo, project01). Observe que especificar um repositório é opcional. Se você não especificar um nome de repositório, o nome da imagem será usado como o nome do repositório no Oracle Cloud Infrastructure Registry.
+
+    <image-name>é o nome que você deseja dar à imagem no Oracle Cloud Infrastructure Registry (por exemplo, helloworld).
+
+    <tag>é uma marca de imagem que você deseja fornecer à imagem no Oracle Cloud Infrastructure Registry (por exemplo, latest).
+
+Por exemplo:
+
+    docker push phx.ocir.io/ansh81vru1zp/helloworld:latest
+
+![Janela do terminal](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-push.png)
+
+As diferentes camadas da imagem do helloworld são empurradas uma por uma.
+
+### T4.9 - Verifique se a imagem foi enviada ao Oracle Cloud Infrastructure Registry
+
+**T4.9.1** Na janela do navegador que mostra o Console com a página Registro exibida, clique em Recarregar . Você vê todos os repositórios no registro aos quais tem acesso, incluindo o repositório privado helloworld que foi criado quando você enviou a imagem helloworld.
+
+![Página de registro](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-registry-repositories.png)
+
+**T4.9.2** Clique no nome do repositório helloworld que contém a imagem que você acabou de enviar. 
+
+Veja que:
+
+- As diferentes imagens no repositório. Nesse caso, há apenas uma imagem, com a tag mais recente.
+- Detalhes sobre o repositório, incluindo quem o criou e quando, seu tamanho e se é um repositório público ou privado
+- O Readme associado ao repositório. Nesse caso, ainda não há Readme.
+
+![Página de registro](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-repository-images.png)
+
+**T4.9.3** Forneça um leia-me para o repositório helloworld da seguinte maneira:
+
+**T4.9.3.1** Clique no botão Editar na seção Readme .
+
+**T4.9.3.2** Em Edit Readme, selecione a opção Markdown e copie e cole a seguinte descrição da imagem helloworld no conteúdo de campo:
+
+	## Exemplo Hello World
+	por Karthequian [retirado do Dockerhub] (https://hub.docker.com/r/karthequian/helloworld/)
+	! [Helloworld por Karthquian] (https://raw.githubusercontent.com/oracle/cloud-native-devops-workshop/master/containers/docker001/images/004-hello-world.png)
+
+![Janela Editar Leiame, guia Editar](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-image-readme-complete.png)
+
+**T4.9.3.3** Clique na guia Visualizar para ver como o leiame aparecerá.
+
+![Janela Editar Leiame, guia Visualizar](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-image-readme-preview.png)
+
+**T4.9.3.4** Clique em Salvar para fechar a caixa de diálogo Editar Leiame.
+
+**T4.9.4** Clique na última marca de imagem. A seção Detalhes mostra o tamanho da imagem, quando ela foi empurrada e por qual usuário, e o número de vezes que a imagem foi puxada.
+
+![Página de registro](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-image-summary.png)
+
+**(Opcional)** Mais tarde, se você deseja puxar a imagem, clique no botão Ações ao lado do nome da imagem e selecione Copiar comando de puxar . Por exemplo, o comando pode ser:
+**docker pull phx.ocir.io/ansh81vru1zp/helloworld:latest**
+
 Parabéns! Você puxou com sucesso a imagem helloworld do DockerHub, marcou-a e enviou-a para o Oracle Cloud Infrastructure Registry usando o Docker CLI. Você verificou que a imagem foi enviada com sucesso e adicionou uma descrição no readme.
+
+
+----
+Referências:
+
+- https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/index.html
+- https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/index.html
+
