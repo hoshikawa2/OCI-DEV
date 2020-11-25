@@ -52,6 +52,81 @@ Se você ainda não possui uma conta no github.com, por favor, siga estes passos
 ![figura](https://github.com/hoshikawa2/OCI-DEV/blob/main/images/github.png?raw=true)
 
 
+### T1.4 Como gerar uma chave de assinatura de API
+
+**T1.4.1 - Gerando uma chave de assinatura de API (Linux e Mac OS X)**
+
+Use os seguintes comandos OpenSSL para gerar o par de chaves no formato PEM necessário.
+
+**T1.4.1.1** Crie um .ocidiretório para armazenar as credenciais, caso ainda não o tenha feito :
+
+
+    mkdir ~/.oci                
+
+**T1.4.1.2** Gere a chave privada com um dos seguintes comandos.
+
+ - Para gerar a chave, criptografada com uma senha longa que você fornece quando solicitado:
+ 
+    Observação
+
+    Recomendamos que você use uma senha longa para sua chave.
+    
+    openssl genrsa -out ~/.oci/oci_api_key.pem -aes128 2048                    
+
+ - Para gerar a chave sem senha:
+
+    openssl genrsa -out ~/.oci/oci_api_key.pem 2048                        
+    
+**T1.4.1.3** Altere a permissão do arquivo para garantir que apenas você possa ler o arquivo da chave privada:
+
+    chmod go-rwx ~/.oci/oci_api_key.pem               
+    
+**T1.4.1.4** Gere a chave pública a partir de sua nova chave privada:
+
+    openssl rsa -pubout -in ~/.oci/oci_api_key.pem -out ~/.oci/oci_api_key_public.pem             
+    
+**T1.4.1.5** Copie o conteúdo da chave pública para a área de transferência usando pbcopy, xclip ou uma ferramenta semelhante (você precisará colar o valor no console posteriormente). Por exemplo:
+
+    cat ~/.oci/oci_api_key_public.pem | pbcopy           
+    
+Suas solicitações de API serão assinadas com sua chave privada e a Oracle usará a chave pública para verificar a autenticidade da solicitação. Você deve carregar a chave pública para o IAM (instruções abaixo).
+
+**T1.4.2 - Gerando uma chave de assinatura de API (Windows)**
+
+Se estiver usando o Windows, você precisará instalar o Git Bash para Windows antes de executar os comandos a seguir.
+
+    Observação
+
+    Certifique-se de incluir o opensslbinário no caminho do Windows. Nas instalações padrão, o arquivo openssl.exe pode ser encontrado em C:\Program Files\Git\mingw64\bin.
+Use os seguintes comandos OpenSSL para gerar o par de chaves no formato PEM necessário.
+
+**T1.4.2.1** Crie um .ocidiretório para armazenar as credenciais, caso ainda não o tenha feito . Por exemplo:
+
+    mkdir %HOMEDRIVE%%HOMEPATH%\.oci                
+    
+**T1.4.2.2** Gere a chave privada com um dos seguintes comandos:
+
+Para gerar a chave que é criptografada com uma senha longa que você fornece quando solicitado:
+ 
+    Observação
+    Recomendamos que você use uma senha longa para sua chave.
+
+    openssl genrsa -out %HOMEDRIVE%%HOMEPATH%\.oci\oci_api_key.pem -aes128 -passout stdin 2048
+                     
+Para gerar a chave sem senha:
+
+    openssl genrsa -out %HOMEDRIVE%%HOMEPATH%\.oci\oci_api_key.pem 2048                        
+
+**T1.4.2.3** Gere a chave pública a partir de sua nova chave privada:
+
+    openssl rsa -pubout -in %HOMEDRIVE%%HOMEPATH%\.oci\oci_api_key.pem -out %HOMEDRIVE%%HOMEPATH%\.oci\oci_api_key_public.pem             
+
+**T1.4.2.4** Copie o conteúdo da chave pública para a área de transferência (você precisará colar o valor no console posteriormente). Por exemplo:
+
+    type \.oci\oci_api_key_public.pem     
+    
+Suas solicitações de API serão assinadas com sua chave privada e a Oracle usará a chave pública para verificar a autenticidade da solicitação. Você deve carregar a chave pública para o IAM (instruções abaixo).
+
 ----
 # T2 - Tutorial 2 - Instalando o CLI
 
@@ -218,7 +293,7 @@ Você pode fazer upload da chave pública PEM no console , que pode ser acessado
 
 **T2.6.3.2.3** Clique em Adicionar chave pública .
 
-**T2.6.3.2.4** Cole o conteúdo da chave pública PEM na caixa de diálogo e clique em Adicionar .
+**T2.6.3.2.4** Cole o conteúdo da chave pública PEM (as chaves estão no diretório "chaves para os labs" deste material) na caixa de diálogo e clique em Adicionar .
 
     A impressão digital da chave é exibida (por exemplo, 12: 34: 56: 78: 90: ab: cd: ef: 12: 34: 56: 78: 90: ab: cd: ef).
 
@@ -293,8 +368,6 @@ Neste tutorial, você usa as configurações padrão para definir um novo cluste
 
 **Para isto, você necessitará:**
 
-- Uma máquina local (Windows, Linux ou Mac)
-- Chaves de acesso (pública e privada)
 
 - Um nome de usuário e senha do Oracle Cloud Infrastructure.
 - Dentro da sua tenant, já deve haver um compartimento para conter os recursos de rede necessários (VCN, sub-redes, gateway de internet, gateway de NAT, tabela de rotas, listas de segurança). Se tal compartimento ainda não existir, você terá que criá-lo antes de iniciar este tutorial.
@@ -304,7 +377,6 @@ Neste tutorial, você usa as configurações padrão para definir um novo cluste
  - Um grupo ao qual uma política concede as permissões apropriadas do Container Engine para Kubernetes. Como você criará e configurará um cluster e recursos de rede associados durante o tutorial, as políticas também devem conceder ao grupo as permissões apropriadas sobre esses recursos. Para mais detalhes e exemplos, consulte o tópico Configuração de política para criação e implantação de cluster na documentação do Container Engine para Kubernetes.
 - Antes de configurar o arquivo kubeconfig posteriormente no tutorial, você já deve ter feito o seguinte (se não tiver feito ou não tiver certeza, consulte o tópico Configurando o acesso ao cluster na documentação do Container Engine para Kubernetes):
 
-****** REVISAR
  - gerou um par de chaves de assinatura de API
  - adicionou o valor da chave pública do par de chaves de assinatura da API às Configurações do usuário para o seu nome de usuário
  - instalado e configurado o Oracle Cloud Infrastructure CLI (versão 2.6.4 ou posterior)
