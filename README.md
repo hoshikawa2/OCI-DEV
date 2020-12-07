@@ -657,9 +657,9 @@ onde **<region-key>** está a chave para a região do Oracle Cloud Infrastructur
     Por exemplo phx,. Consulte o tópico Disponibilidade por região na documentação do Oracle Cloud Infrastructure Registry.
     DICA: As regiões são as siglas dos aeroportos. Por exemplo: GRU - Guarulhos-SP, IAD - Ashburn, etc
 
-**T4.5.2** Quando solicitado, digite seu nome de usuário no formato <tenancy-namespace>/<username>. 
+**T4.5.2** Quando solicitado, digite seu nome de usuário no formato < tenancy-namespace >/< username >. 
 
-Por exemplo ansh81vru1zp/jdoe@acme.com,. Se a sua tenant for federada com o Oracle Identity Cloud Service, use o formato <tenancy-namespace>/oracleidentitycloudservice/<username>.
+Por exemplo ansh81vru1zp/jdoe@acme.com. Se a sua tenant for federada com o Oracle Identity Cloud Service, use o formato < tenancy-namespace >/oracleidentitycloudservice/< username >.
 
 **T4.5.3** Quando solicitado, digite o token de autenticação que você copiou anteriormente como a senha.
 
