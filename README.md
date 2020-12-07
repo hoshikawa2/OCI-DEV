@@ -38,7 +38,9 @@ Siga este link:
 
     https://kubernetes.io/docs/tasks/tools/install-kubectl/
     
-    Obs: O kubectl é a linha de comandos para se trabalhar com kubernetes. Neste tutorial da página kubernetes.io, apenas certifique-se de que o comando seja instalado e que você consiga acessá-lo com
+    Obs: O kubectl é a linha de comandos para se trabalhar com kubernetes. 
+    Neste tutorial da página kubernetes.io, apenas certifique-se de que o comando 
+    seja instalado e que você consiga acessá-lo com
     
     kubectl version
     
