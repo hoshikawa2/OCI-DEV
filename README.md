@@ -200,7 +200,7 @@ Você pode usar o Homebrew para instalar, atualizar e desinstalar o CLI no Mac O
 
 ### T2.4 - Windows
 
-**T2.4.1** Abra o console do PowerShell usando a opção Executar como administrador .
+**T2.4.1** Abra o console do PowerShell usando a opção Executar **como administrador** .
 
 O instalador permite o preenchimento automático instalando e executando um script. Para permitir que este script seja executado, você deve habilitar a política de execução **RemoteSigned**.
 
