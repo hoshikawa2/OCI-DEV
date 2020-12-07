@@ -455,17 +455,17 @@ Descrição da ilustração
 **T3.3.3** Em uma janela de terminal, crie um diretório para conter o arquivo kubeconfig, fornecendo ao diretório o nome e a localização padrão esperados $HOME/.kube. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
 
 
-       $ mkdir -p $ HOME / .kube
+       $ mkdir -p $HOME/.kube
 
 **T3.3.4** Execute o comando CLI do Oracle Cloud Infrastructure para configurar o arquivo kubeconfig e salve-o com o nome e localização padrão esperados $HOME/.kube/config. Esse nome e local garantem que o arquivo kubeconfig esteja acessível para kubectl e o painel do Kubernetes sempre que você executá-los em uma janela de terminal. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ):
 
-    $ oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.phx.aaaaaaaaae ... --file $ HOME / .kube / config --region us-phoenix-1 --token-version 2.0.0
+    $ oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.phx.aaaaaaaaae ... --file $HOME/.kube/config --region us-phoenix-1 --token-version 2.0.0
 
 onde ocid1.cluster.oc1.phx.aaaaaaaaae ... é o OCID do cluster atual. Por conveniência, o comando na caixa de diálogo Acessar seu cluster já inclui o OCID do cluster.
 
 **T3.3.5** Configure o valor da variável de ambiente KUBECONFIG para o nome e localização do arquivo kubeconfig. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
 
-    $ export KUBECONFIG = $ HOME / .kube / config
+    $ export KUBECONFIG=$HOME/.kube/config
 
 **T3.3.6** Clique em Fechar para fechar a caixa de diálogo Acessar seu cluster .
 
