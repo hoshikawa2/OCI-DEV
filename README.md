@@ -1061,4 +1061,9 @@ Referências:
 - https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-and-registry/index.html
 - https://docs.cloud.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm#two
 
+Projeto como Exemplo:
+- Java: https://github.com/hoshikawa2/oraclejavasoapkubernetes
+- .Net: https://github.com/hoshikawa2/callPDFReportJenkins.git
+- Python: https://github.com/hoshikawa2/findCustomerPython.git
+- NodeJS: https://github.com/hoshikawa2/consultaCEP.git
 
