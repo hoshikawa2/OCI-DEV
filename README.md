@@ -18,7 +18,7 @@ Esperamos que, ao final deste workshop, o participante possa entender esses conc
 
 Este material foi baseado em materiais já existentes **Oracle** (vide seção **Referências** ao final) e foi organizado especialmente para tornar a experiência prática deste workshop mais agradável. O material original se encontra em inglês.
 
-Observação: Este material faz referência às imagens originais, portanto, se a imagem não aparecer neste material, provavelmente é porque o material original foi reformulado por algum motivo. Pode ser que este motivo seja uma mudança de versão do tutorial ou mesmo do recurso cloud (OKE, OCIR, OCI CLI, etc). Agradeço imensamente se puder avisar, pois poderemos atualizar este material com mais velocidade.
+Observação: Este material faz referência às imagens ilustrativas originais, portanto, se a imagem não aparecer neste material, provavelmente é porque o material original foi reformulado por algum motivo. Pode ser que este motivo seja uma mudança de versão do tutorial ou mesmo do recurso cloud (OKE, OCIR, OCI CLI, etc). Agradeço imensamente se puder avisar, pois poderemos atualizar este material com mais velocidade.
 
 -----
 # T1 - Tutorial 1 - Pré Check-in
