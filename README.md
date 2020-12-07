@@ -110,7 +110,10 @@ Se estiver usando o Windows, você precisará instalar o Git Bash para Windows a
 
     Observação
 
-    Certifique-se de incluir o opensslbinário no caminho do Windows. Nas instalações padrão, o arquivo openssl.exe pode ser encontrado em C:\Program Files\Git\mingw64\bin.
+    Certifique-se de incluir o openssl binário no caminho do Windows. Na instalação
+    padrão, o arquivo openssl.exe pode ser encontrado em 
+    C:\Program Files\Git\mingw64\bin.
+    
 Use os seguintes comandos OpenSSL para gerar o par de chaves no formato PEM necessário.
 
 **T1.4.2.1** Crie um .ocidiretório para armazenar as credenciais, caso ainda não o tenha feito . Por exemplo:
