@@ -248,12 +248,18 @@ O script de instalação solicita as seguintes informações.
 
     Se você não tiver uma versão compatível do Python instalada:
 
-        Windows e Linux: Você é solicitado a fornecer um local para instalar os binários e executáveis. O script instalará o Python para você.
+        Windows e Linux: Você é solicitado a fornecer um local para instalar os binários
+        e executáveis. O script instalará o Python para você.
 
-        MacOS: você é notificado de que sua versão do Python é incompatível. Você deve atualizar antes de prosseguir com a instalação. O script não instalará o Python para você.
+        MacOS: você é notificado de que sua versão do Python é incompatível. Você deve
+        atualizar antes de prosseguir com a instalação. O script não instalará o 
+        Python para você.
 
-    Quando solicitado a atualizar o CLI para a versão mais recente, responda com Y para sobrescrever uma instalação existente.
-    Quando solicitado a atualizar seu PATH, responda com Y para poder invocar a CLI sem fornecer o caminho completo para o executável. Isso adicionará oci.exe ao seu PATH.
+    Quando solicitado a atualizar o CLI para a versão mais recente, responda 
+    com Y para sobrescrever uma instalação existente.
+    Quando solicitado a atualizar seu PATH, responda com Y para poder invocar a 
+    CLI sem fornecer o caminho completo para o executável. Isso adicionará oci.exe 
+    ao seu PATH.
 
 ### T2.6 - Configurando o arquivo config
 
@@ -307,8 +313,12 @@ Para que a CLI o guie pelo processo de configuração inicial, use o comando:
 
 **O comando solicita as informações necessárias para o arquivo de configuração e as chaves públicas / privadas da API.**
 
-    Obs: Na etapa T1.4, mostramos como gerar as chaves pública e privada. Se você optou por gerá-las automaticamente, é aqui que faremos isso. Ao executar o comando oci setup config, você será questionado se deseja carregar suas chaves previamente geradas ou se deseja gerar as chaves.
-    Lembre que esta etapa pede para você determinar o diretório em que as chaves estão ou que você deseja ter como padrão. Normalmente .oci
+    Obs: Na etapa T1.4, mostramos como gerar as chaves pública e privada. Se você 
+    optou por gerá-las automaticamente, é aqui que faremos isso. Ao executar o comando
+    oci setup config, você será questionado se deseja carregar suas chaves previamente
+    geradas ou se deseja gerar as chaves.
+    Lembre que esta etapa pede para você determinar o diretório em que as chaves estão
+    ou que você deseja ter como padrão. Normalmente .oci
 
 Você vai precisar de algumas informações para preencher a configuração quando executar o comando **oci setup config**. Estas informações você anotou nos passos anteriores.
 
