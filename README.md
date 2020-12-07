@@ -37,6 +37,13 @@ Siga este link:
 Siga este link:
 
     https://kubernetes.io/docs/tasks/tools/install-kubectl/
+    
+    Obs: O kubectl é a linha de comandos para se trabalhar com kubernetes. Neste tutorial da página kubernetes.io, apenas certifique-se de que o comando seja instalado e que você consiga acessá-lo com
+    
+    kubectl version
+    
+    Mais adiante, integraremos o kubectl à Oracle Cloud Infrastructure (OCI).
+    
 
 ### T1.3 - Assine sua conta no github
 
@@ -53,6 +60,9 @@ Se você ainda não possui uma conta no github.com, por favor, siga estes passos
 
 
 ### T1.4 Como gerar uma chave de assinatura de API
+
+    Obs: A etapa T1.4 pode ser feita automaticamente na instalação do OCI CLI. Apenas para conhecimento, entenda que o processo manual de gerar as chaves pública e privada é feita da forma descrita aqui em T1.4. Pule para a etapa T2 para ganhar tempo e gere as chaves automaticamente.
+
 
 **T1.4.1 - Gerando uma chave de assinatura de API (Linux e Mac OS X)**
 
@@ -254,51 +264,36 @@ Vamos lá
  
 **T2.6.1 - OCI do Tenant**
 
-**T2.6.1.1** Abra o menu de navegação , em Governança e administração
+**T2.6.1.1** Clique em Configurações do usuário conforme a imagem e em seguida clique no Tenant:
 
-**T2.6.1.2** Vá para Administração e clique em Detalhes de tenant .
+![Configuração do Tenant](https://github.com/hoshikawa2/OCI-DEV/blob/main/images/Acessando%20Tenant%201.png?raw=true)
 
-**T2.6.1.3** O OCID do tenant é mostrado em Informações de tenant . 
+**T2.6.1.2** O OCID do tenant é mostrado em Informações de tenant . 
 
-**T2.6.1.4** Clique em Copiar para copiá-lo para a área de transferência e guarde em suas anotações para uso posterior
+![OCID do Tenant](https://github.com/hoshikawa2/OCI-DEV/blob/main/images/Acessando%20Tenant%202.png?raw=true)
+
+
+**T2.6.1.3** Clique em Copiar para copiá-lo para a área de transferência e guarde em suas anotações para uso posterior
 
 
 **T2.6.2 - OCI do Usuário**
 
 **T2.6.2.1** Se você estiver conectado como o usuário:
-**T2.6.2.1.1** Abra o menu Perfil (Menu Hambúrger) e clique em Configurações do usuário .
+
+**T2.6.2.1.1** Clique em Configurações do usuário conforme a imagem e em seguida clique no seu usuário:
+
+![Configuração do Usuário](https://github.com/hoshikawa2/OCI-DEV/blob/main/images/Acessando%20Usuario%201.png?raw=true)
 
 **T2.6.2.1.2** Se você for um administrador fazendo isso para outro usuário: Abra o menu de navegação . Em Governança e Administração , acesse Identidade e clique em Usuários . Selecione o usuário na lista.
 
 **T2.6.2.1.3** O OCID do usuário é mostrado em Informações do usuário . 
 
+![OCID do Usuário](https://github.com/hoshikawa2/OCI-DEV/blob/main/images/Acessando%20Usuario%202.png?raw=true)
+
 **T2.6.2.1.4** Clique em Copiar para copiá-lo para a área de transferência e guarde em suas anotações para uso posterior
 
 
-**T2.6.3 - Como fazer upload da chave pública**
-
-Você pode fazer upload da chave pública PEM no console , que pode ser acessado fazendo login aqui: https://cloud.oracle.com
-
-**T2.6.3.1** Abra o Console , e login.
-
-**T2.6.3.2** Visualize os detalhes do usuário que chamará a API com o par de chaves:
-
-**T2.6.3.2.1** Se você estiver conectado como o usuário:
-
-- Abra o menu Perfil (Menú Hambúrger) e clique em Configurações do usuário .
-
-**T2.6.3.2.2** Se você for um administrador fazendo isso para outro usuário: 
-- Abra o menu de navegação . 
-- Em Governança e Administração , acesse Identidade e clique em Usuários . 
-- Selecione o usuário na lista.
-
-**T2.6.3.2.3** Clique em Adicionar chave pública .
-
-**T2.6.3.2.4** Cole o conteúdo da chave pública PEM na caixa de diálogo e clique em Adicionar .
-
-    A impressão digital da chave é exibida (por exemplo, 12: 34: 56: 78: 90: ab: cd: ef: 12: 34: 56: 78: 90: ab: cd: ef).
-
-**T2.6.4 Configurando OCI CLI**
+**T2.6.3 Configurando OCI CLI**
 
 Para que a CLI o guie pelo processo de configuração inicial, use o comando:
 
@@ -307,12 +302,37 @@ Para que a CLI o guie pelo processo de configuração inicial, use o comando:
 
 **O comando solicita as informações necessárias para o arquivo de configuração e as chaves públicas / privadas da API.**
 
-    A caixa de diálogo de configuração gera um par de chaves API e cria o arquivo de configuração.
+    Obs: Na etapa T1.4, mostramos como gerar as chaves pública e privada. Se você optou por gerá-las automaticamente, é aqui que faremos isso. Ao executar o comando oci setup config, você será questionado se deseja carregar suas chaves previamente geradas ou se deseja gerar as chaves.
+    Lembre que esta etapa pede para você determinar o diretório em que as chaves estão ou que você deseja ter como padrão. Normalmente .oci
 
 Você vai precisar de algumas informações para preencher a configuração quando executar o comando **oci setup config**. Estas informações você anotou nos passos anteriores.
 
 - OCID do Tenant
 - OCID do seu Usuário na Cloud Oracle
+
+
+**T2.6.4 - Como fazer upload da chave pública**
+
+Você pode fazer upload da chave pública PEM no console , que pode ser acessado fazendo login aqui: https://cloud.oracle.com
+
+**T2.6.4.1** Clique em Configurações do usuário conforme a imagem e em seguida clique no seu usuário:
+
+![Configuração do Usuário](https://github.com/hoshikawa2/OCI-DEV/blob/main/images/Acessando%20Usuario%201.png?raw=true)
+
+**T2.6.4.2** Visualize os detalhes do usuário que chamará a API com o par de chaves:
+
+**T2.6.4.3** Se você for um administrador fazendo isso para outro usuário: 
+- Abra o menu de navegação . 
+- Em Governança e Administração , acesse Identidade e clique em Usuários . 
+- Selecione o usuário na lista.
+
+**T2.6.4.4** Clique em Adicionar chave pública .
+
+![Adicionando chave pública](https://github.com/hoshikawa2/OCI-DEV/blob/main/images/API%20Key.png?raw=true)
+
+**T2.6.4.5** Cole o conteúdo da chave pública PEM na caixa de diálogo e clique em Adicionar .
+
+    A impressão digital da chave é exibida (por exemplo, 12: 34: 56: 78: 90: ab: cd: ef: 12: 34: 56: 78: 90: ab: cd: ef).
 
 
 **T2.6.5 - Testando o OCI CLI**
@@ -448,16 +468,17 @@ Você vê os diferentes recursos de rede sendo criados para você.
  - Instalado e configurado o Oracle Cloud Infrastructure CLI (versão 2.6.4 ou posterior).
 
 
-**T3.3.2** Com a página Node Pools mostrando detalhes de pool1, clique em Tutorial Cluster no caminho de navegação. Clique em Access Cluster para exibir a caixa de diálogo Access Your Cluster e, em seguida, clique em Local Access .
-Como acessar a caixa de diálogo do Kubeconfig
-Descrição da ilustração
+**T3.3.2** Com a página Node Pools mostrando detalhes de pool1, clique em Tutorial Cluster no caminho de navegação. Clique em Access Cluster para exibir a caixa de diálogo Access Your Cluster e, em seguida, clique em Local Access.
+
+![Como acessar a caixa de diálogo do Kubeconfig](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/oke-full/img/oci-how-to-access-kubeconfig.png)
+
 
 **T3.3.3** Em uma janela de terminal, crie um diretório para conter o arquivo kubeconfig, fornecendo ao diretório o nome e a localização padrão esperados $HOME/.kube. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ): 
 
 
        $ mkdir -p $HOME/.kube
 
-**T3.3.4** Execute o comando CLI do Oracle Cloud Infrastructure para configurar o arquivo kubeconfig e salve-o com o nome e localização padrão esperados $HOME/.kube/config. Esse nome e local garantem que o arquivo kubeconfig esteja acessível para kubectl e o painel do Kubernetes sempre que você executá-los em uma janela de terminal. Por exemplo, no Linux, digite o seguinte comando (ou copie e cole da caixa de diálogo Acessar seu cluster ):
+**T3.3.4** Execute o comando CLI do Oracle Cloud Infrastructure para configurar o arquivo kubeconfig e salve-o com o nome e localização padrão esperados $HOME/.kube/config. Esse nome e local garantem que o arquivo kubeconfig esteja acessível para kubectl e o painel do Kubernetes sempre que você executá-los em uma janela de terminal. Por exemplo, no Linux, digite o seguinte comando ( **ou copie e cole da caixa de diálogo Acessar seu cluster** ):
 
     $ oci ce cluster create-kubeconfig --cluster-id ocid1.cluster.oc1.phx.aaaaaaaaae ... --file $HOME/.kube/config --region us-phoenix-1 --token-version 2.0.0
 
@@ -473,7 +494,7 @@ onde ocid1.cluster.oc1.phx.aaaaaaaaae ... é o OCID do cluster atual. Por conven
 
 ### T3.4 - Verifique o acesso do painel de kubectl e Kubernetes ao cluster
 
-**T3.4.1** Confirme se você já instalou o kubectl. Se você ainda não fez isso, consulte a documentação do kubectl .
+**T3.4.1** Confirme se você já instalou o kubectl. Se você ainda não fez isso, consulte a documentação do kubectl ( **Passo T1.2** ).
 
 **T3.4.2** Verifique se você pode usar kubectl para se conectar ao novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
 
