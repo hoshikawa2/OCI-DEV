@@ -164,7 +164,7 @@ Versões e sistemas operacionais compatíveis com Python
 - CentOS 6.9, CentOS 6.10 e CentOS 7.0
 - Ubuntu 16.04, Ubuntu 18.04 e Ubuntu 20.04
 
-### T2.1 - Linux e Unix (incluindo Oracle Linux 8)
+### T2.1 - Linux e Unix (incluindo Oracle Linux 8, Ubuntu)
 
 **T2.1.1** Abra um terminal.
 
@@ -593,8 +593,7 @@ conectar ao painel.
 
 **T3.4.4.6** Abra uma nova janela do navegador e acesse 
 
-    http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/login
-    
+    http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/login
     
  para exibir o painel do Kubernetes.
  
@@ -703,7 +702,7 @@ Por exemplo ansh81vru1zp/jdoe@acme.com. Se a sua tenant for federada com o Oracl
 
 ### T4.6 - Extraia a imagem hello-world do DockerHub
 
-Em uma janela de terminal na máquina cliente que executa o Docker, digite docker pull karthequian/helloworld:latestpara recuperar a versão mais recente da imagem hello-world do DockerHub.
+Em uma janela de terminal na máquina cliente que executa o Docker, digite docker pull karthequian/helloworld:latest para recuperar a versão mais recente da imagem hello-world do DockerHub.
 
 ![Janela do terminal](https://www.oracle.com/webfolder/technetwork/tutorials/obe/oci/registry/img/oci-docker-pull.png)
 
@@ -896,7 +895,7 @@ Onde:
 
 Por exemplo, combinando os exemplos anteriores, você pode inserir:
 
-    $ kubectl criar docker-registry ocirsecret secreto --docker-server = phx.ocir.io --docker-username='ansh81vru1zp/jdoe@acme.com '--docker-password ='​​k]j64r{1sJSSF-;)K8' --docker-email='jdoe@acme.com'
+    $ kubectl create docker-registry ocirsecret secret --docker-server=phx.ocir.io --docker-username='ansh81vru1zp/jdoe@acme.com' --docker-password='​​k]j64r{1sJSSF-;)K8' --docker-email='jdoe@acme.com'
 
 **T5.4.2** Verifique se o segredo foi criado inserindo:
 
