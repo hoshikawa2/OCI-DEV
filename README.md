@@ -895,7 +895,7 @@ Onde:
 
 Por exemplo, combinando os exemplos anteriores, você pode inserir:
 
-    $ kubectl create docker-registry ocirsecret secret --docker-server=phx.ocir.io --docker-username='ansh81vru1zp/jdoe@acme.com' --docker-password='​​k]j64r{1sJSSF-;)K8' --docker-email='jdoe@acme.com'
+    $ kubectl create secret docker-registry ocirsecret --docker-server=phx.ocir.io --docker-username='ansh81vru1zp/jdoe@acme.com' --docker-password='​​k]j64r{1sJSSF-;)K8' --docker-email='jdoe@acme.com'
 
 **T5.4.2** Verifique se o segredo foi criado inserindo:
 
