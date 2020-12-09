@@ -63,6 +63,10 @@ Se você ainda não possui uma conta no github.com, por favor, siga estes passos
 
 ### T1.4 Instalando o Docker
 
+O docker é uma alternativa à virtualização, onde o maior diferencial é o compartilhamento do Kernel da máquina hospedeira (Linux) com os containers que fazem o papel do ambiente virtualizado.
+As aplicações assim podem se beneficiar da implantação nestes containers e contar com flexibilidade e portabilidade independente do ambiente em que sejam implatados (nuvem pública, nuvem privada, on-premisses, etc).
+A instalação do docker é necessária para este workshop para execução de comandos de manipulação do repositório de imagens.
+
 **T1.4.1 Linux**
 
 Para instalar o docker no Oracle Linux, CentOS, Redhat, primeiramente faça o setup do repositório:
