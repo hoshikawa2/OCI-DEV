@@ -67,6 +67,14 @@ O docker é uma alternativa à virtualização, onde o maior diferencial é o co
 As aplicações assim podem se beneficiar da implantação nestes containers e contar com flexibilidade e portabilidade independente do ambiente em que sejam implatados (nuvem pública, nuvem privada, on-premisses, etc).
 A instalação do docker é necessária para este workshop para execução de comandos de manipulação do repositório de imagens.
 
+A instalação do docker segue o site oficial Docker, conforme abaixo:
+
+    https://docs.docker.com/engine/install/centos/
+    https://docs.docker.com/engine/install/debian/
+    https://docs.docker.com/engine/install/ubuntu/
+    https://docs.docker.com/docker-for-mac/install/
+    https://docs.docker.com/docker-for-windows/install/
+
 **T1.4.1 Linux**
 
 Para instalar o docker no Oracle Linux, CentOS, Redhat, primeiramente faça o setup do repositório:
