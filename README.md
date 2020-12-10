@@ -128,17 +128,18 @@ Adicione o GPG key oficial do docker:
 
     $ sudo apt-key fingerprint 0EBFCD88
 
+Atualize o repositório:
+
     $ sudo add-apt-repository \
       "deb [arch=amd64] https://download.docker.com/linux/ubuntu \      
       $(lsb_release -cs) \
       stable"
-      
-    $ sudo /etc/init.d/docker start
-    
+    $ sudo apt-get update
+          
 Em seguida, instale a última versão do Docker:
 
-    $ sudo apt-get update
     $ sudo apt-get install docker-ce docker-ce-cli containerd.io
+    $ sudo /etc/init.d/docker start
        
 Teste para saber se o docker está funcionando:
 
@@ -1209,4 +1210,3 @@ Projeto como Exemplo:
 - .Net: https://github.com/hoshikawa2/callPDFReportJenkins.git
 - Python: https://github.com/hoshikawa2/findCustomerPython.git
 - NodeJS: https://github.com/hoshikawa2/consultaCEP.git
-
