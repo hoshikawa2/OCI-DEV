@@ -74,7 +74,14 @@ A instalação do docker segue o site oficial Docker, conforme abaixo:
     https://docs.docker.com/engine/install/ubuntu/
     https://docs.docker.com/docker-for-mac/install/
     https://docs.docker.com/docker-for-windows/install/
+    
 
+Se você pretende instalar o docker com WSL no Windows:
+
+    WSL deve funcionar bem se você instalar o docker com WSL2 e Ubuntu
+    Até o fechamento deste material, o WSL1 e Debian não funcionaram corretamente
+    
+    
 **T1.4.1 Linux**
 
 Para instalar o docker no Oracle Linux, CentOS, Redhat, primeiramente faça o setup do repositório:
@@ -119,10 +126,14 @@ Adicione o GPG key oficial do docker:
 
     $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
+    $ sudo apt-key fingerprint 0EBFCD88
+
     $ sudo add-apt-repository \
       "deb [arch=amd64] https://download.docker.com/linux/ubuntu \      
       $(lsb_release -cs) \
       stable"
+      
+    $ sudo /etc/init.d/docker start
     
 Em seguida, instale a última versão do Docker:
 
