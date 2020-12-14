@@ -167,7 +167,7 @@ Dê duplo-clique com o mouse no arquivo "Docker for Windows Installer" e siga os
 
 Na janela do Powershell, teste o docker com o comando:
 
-    $ sudo docker run hello-world
+    $ docker run hello-world
     
 
 ### T1.5 Como gerar uma chave de assinatura de API
