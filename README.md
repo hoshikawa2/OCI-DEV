@@ -681,10 +681,14 @@ Em um editor de texto, crie um arquivo chamado oke-admin-sa-token.yaml com o seg
     kubectl apply -f oke-admin-service-account.yaml
     kubectl apply -f oke-admin-sa-token.yaml
 
-A saída do comando acima confirma a criação da conta de serviço e o clusterrolebinding:
+A saída do comando para oke-admin-service-account.yaml confirma a criação da conta de serviço e o clusterrolebinding:
 
     serviceaccount "oke-admin" created
     clusterrolebinding.rbac.authorization.k8s.io "oke-admin" created
+
+E a sauda do comando para oke-admin-sa-token.yaml confirma a criação do token:
+	
+    secret/oke-admin-sa-token created
 
 Agora você pode usar a conta de serviço oke-admin para visualizar e controlar o cluster e se conectar ao painel do Kubernetes.
 
