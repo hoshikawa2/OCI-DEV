@@ -690,7 +690,7 @@ Agora você pode usar a conta de serviço oke-admin para visualizar e controlar 
 
 **T3.4.4.3** Obtenha um token de autenticação para a conta de serviço oke-admin inserindo:
 
-    $ kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep oke-admin | awk '{print $1}')
+    kubectl describe secrets oke-admin-sa-token -n kube-system
 
 A saída do comando acima inclui um token de autenticação (uma longa string alfanumérica) como o valor do token:elemento, conforme mostrado abaixo:
 
