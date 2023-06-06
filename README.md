@@ -633,7 +633,7 @@ Você vê detalhes dos nós em execução no cluster. Por exemplo:
 
 **T3.4.3** Implante o painel do Kubernetes no novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
 
-    $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 
 **T3.4.4** Verifique se você pode usar o painel Kubernetes para se conectar ao cluster:
 
@@ -662,9 +662,24 @@ Você vê detalhes dos nós em execução no cluster. Por exemplo:
   	    
 O arquivo define uma conta de serviço de administrador e um clusterrolebinding, ambos chamados oke-admin.
 
-**T3.4.4.2** Crie a conta de serviço e o clusterrolebinding no cluster inserindo:
+Obtenha um token de autenticação para a conta de serviço oke-admin da seguinte forma
+Em um editor de texto, crie um arquivo chamado oke-admin-sa-token.yaml com o seguinte conteúdo:
+	
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: oke-admin-sa-token
+      namespace: kube-system
+      annotations:
+       kubernetes.io/service-account.name: oke-admin
+    type: kubernetes.io/service-account-token
 
-    $ kubectl apply -f oke-admin-service-account.yaml
+
+	
+**T3.4.4.2** Crie a conta de serviço, o clusterrolebinding no cluster e obtenha o token executando os seguintes comandos:
+
+    kubectl apply -f oke-admin-service-account.yaml
+    kubectl apply -f oke-admin-sa-token.yaml
 
 A saída do comando acima confirma a criação da conta de serviço e o clusterrolebinding:
 
