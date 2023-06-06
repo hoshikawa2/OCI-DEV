@@ -645,7 +645,7 @@ Você vê detalhes dos nós em execução no cluster. Por exemplo:
       name: oke-admin
       namespace: kube-system
     ---
-    apiVersion: rbac.authorization.k8s.io/v1beta1
+    apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRoleBinding
     metadata:
       name: oke-admin
