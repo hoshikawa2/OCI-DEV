@@ -633,7 +633,7 @@ Você vê detalhes dos nós em execução no cluster. Por exemplo:
 
 **T3.4.3** Implante o painel do Kubernetes no novo cluster que você criou. Em uma janela de terminal, digite o seguinte comando:
 
-    $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.3/aio/deploy/recommended.yaml
+    $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
 
 **T3.4.4** Verifique se você pode usar o painel Kubernetes para se conectar ao cluster:
 
